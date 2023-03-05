@@ -42,6 +42,29 @@ async def create_account():
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
+@app.route("/login", methods=["POST"])
+async def login():
+    data = await request.get_json(force=True)
+
+    try:
+        username = data["username"]
+        password = data["password"]
+    except KeyError:
+        abort(400)
+
+    async with conn.cursor() as cursor:
+        user = await (await cursor.execute("""
+        SELECT 1
+        FROM user_info
+        WHERE username = ? AND password = ?
+        """,
+        (username, password))).fetchone()
+
+        if user is None:
+            abort(400)
+        
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
 async def run():
     global session, cursor
     async with aiohttp.ClientSession() as s, asqlite.connect('website.db') as c:
