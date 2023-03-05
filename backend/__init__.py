@@ -12,7 +12,7 @@ conn = None
 async def main():
     return "Online"
 
-@app.route("/create_account", methods=["POST"])
+@app.post("/create_account")
 async def create_account():
     data = await request.get_json(force=True)
 
@@ -45,7 +45,7 @@ async def create_account():
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
-@app.route("/login", methods=["POST"])
+@app.post("/login")
 async def login():
     data = await request.get_json(force=True)
 
@@ -71,7 +71,35 @@ async def login():
         
         return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
-@app.route("/submit_task", methods=["POST"])
+@app.get("/submitted_tasks")
+async def submitted_tasks():
+    tasks = []
+    async with conn.cursor() as cursor:
+        for row in await conn.execute("""SELECT * FROM submitted_tasks"""):
+            tasks.append({
+                "submission_id": row[0],
+                "task_id": row[1],
+                "username": row[2],
+                "submission": row[3],
+            })
+
+    return json.dumps({'success':True, 'data': tasks}), 200, {'ContentType':'application/json'}
+
+@app.get("/reviewed_tasks")
+async def reviewed_tasks():
+    tasks = []
+    async with conn.cursor() as cursor:
+        for row in await conn.execute("""SELECT * FROM reviewed_tasks"""):
+            tasks.append({
+                "submission_id": row[0],
+                "task_id": row[1],
+                "username": row[2],
+                "submission": row[3],
+            })
+
+    return json.dumps({'success':True, 'data': tasks}), 200, {'ContentType':'application/json'}
+
+@app.post("/submit_task")
 async def submit_task():
     data = await request.get_json(force=True)
 
@@ -121,13 +149,89 @@ async def submit_task():
             ), 400, {'ContentType':'application/json'}
 
         await cursor.execute("""
-        INSERT INTO submitted_tasks
+        INSERT INTO submitted_tasks(task_id, username, submission)
         VALUES (?, ?, ?)
         """,
         (task_id, username, submission))
         await conn.commit()
 
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+
+@app.post("/accept_task")
+async def accept_task():
+    data = await request.get_json(force=True)
+
+    try:
+        submission_id = data["submission_id"]
+    except KeyError:
+        abort(400)
+
+    async with conn.cursor() as cursor:
+        task = await (await cursor.execute("""
+        SELECT 1 FROM reviewed_tasks
+        WHERE submission_id = ?
+        """,
+        (submission_id))).fetchone()
+        if task is not None:
+            return json.dumps({
+                'success':False,
+                'message': 'Task already accepted.'}
+            ), 400, {'ContentType':'application/json'}
+        
+        task = await (await cursor.execute("""
+        SELECT * FROM submitted_tasks
+        WHERE submission_id = ?
+        """,
+        (submission_id))).fetchone()
+        if task is None:
+            return json.dumps({
+                'success':False,
+                'message': 'Task does not exist.'}
+            ), 400, {'ContentType':'application/json'}
+
+        await cursor.execute("""
+        DELETE FROM submitted_tasks
+        WHERE submission_id = ?
+        """,
+        (submission_id))
+        await cursor.execute("""
+        INSERT INTO reviewed_tasks
+        VALUES (?, ?, ?, ?)
+        """,
+        (task[0], task[1], task[2], task[3]))
+        await conn.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+
+@app.post("/decline_task")
+async def decline_task():
+    data = await request.get_json(force=True)
+
+    try:
+        submission_id = data["submission_id"]
+    except KeyError:
+        abort(400)
+
+    async with conn.cursor() as cursor:
+        task = await (await cursor.execute("""
+        SELECT * FROM submitted_tasks
+        WHERE submission_id = ?
+        """,
+        (submission_id))).fetchone()
+        if task is None:
+            return json.dumps({
+                'success':False,
+                'message': 'Task does not exist.'}
+            ), 400, {'ContentType':'application/json'}
+
+        await cursor.execute("""
+        DELETE FROM submitted_tasks
+        WHERE submission_id = ?
+        """,
+        (submission_id))
+        await conn.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 async def run():
     global session, cursor
