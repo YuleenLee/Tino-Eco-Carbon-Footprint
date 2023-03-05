@@ -31,13 +31,16 @@ async def create_account():
         (username))).fetchone()
 
         if user is not None:
-            abort(400)
+            return json.dumps({
+                'success':False,
+                'message': 'A user with that username already exists.'}
+            ), 400, {'ContentType':'application/json'} 
 
         await cursor.execute("""
-        INSERT INTO user_info
-        VALUES (?, ?, ?)
+        INSERT INTO user_info(username, password)
+        VALUES (?, ?)
         """,
-        (username, password, 0))
+        (username, password))
         await conn.commit()
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
@@ -61,9 +64,70 @@ async def login():
         (username, password))).fetchone()
 
         if user is None:
-            abort(400)
+            return json.dumps({
+                'success':False,
+                'message': 'Invalid login information.'}
+            ), 400, {'ContentType':'application/json'} 
         
         return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
+@app.route("/submit_task", methods=["POST"])
+async def submit_task():
+    data = await request.get_json(force=True)
+
+    try:
+        username = data["username"]
+        task_id = data["task_id"]
+        submission = data["submission"]
+    except KeyError:
+        abort(400)
+
+    async with conn.cursor() as cursor:
+        task1 = await (await cursor.execute("""
+        SELECT COUNT(*)
+        FROM submitted_tasks
+        WHERE task_id = ? AND username = ? AND submission = ?
+        """,
+        (task_id, username, submission))).fetchone()
+        task2 = await (await cursor.execute("""
+        SELECT COUNT(*)
+        FROM reviewed_tasks
+        WHERE task_id = ? AND username = ? AND submission = ?
+        """,
+        (task_id, username, submission))).fetchone()
+
+        if task1 is not None or task2 is not None:
+            return json.dumps({
+                'success':False,
+                'message': 'Duplucate submission.'}
+            ), 400, {'ContentType':'application/json'}
+        
+        task_limit = await (await cursor.execute("""
+        SELECT limit
+        FROM task_info
+        WHERE task_id = ?
+        """,
+        (task_id))).fetchone()
+        if task_limit is None:
+            return json.dumps({
+                'success':False,
+                'message': 'Invalid task.'}
+            ), 400, {'ContentType':'application/json'}
+        
+        if task1[0] + task2[0] >= task_limit[0]:
+            return json.dumps({
+                'success':False,
+                'message': 'Maximum submissions reached.'}
+            ), 400, {'ContentType':'application/json'}
+
+        await cursor.execute("""
+        INSERT INTO submitted_tasks
+        VALUES (?, ?, ?)
+        """,
+        (task_id, username, submission))
+        await conn.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 async def run():
     global session, cursor
