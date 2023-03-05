@@ -157,26 +157,28 @@ async def submit_task():
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
-@app.post("/accept_task")
-async def accept_task():
+@app.post("/review_task")
+async def review_task():
     data = await request.get_json(force=True)
 
     try:
         submission_id = data["submission_id"]
+        accepted = data["accepted"]
     except KeyError:
         abort(400)
 
     async with conn.cursor() as cursor:
-        task = await (await cursor.execute("""
-        SELECT 1 FROM reviewed_tasks
-        WHERE submission_id = ?
-        """,
-        (submission_id))).fetchone()
-        if task is not None:
-            return json.dumps({
-                'success':False,
-                'message': 'Task already accepted.'}
-            ), 400, {'ContentType':'application/json'}
+        if accepted:
+            task = await (await cursor.execute("""
+            SELECT 1 FROM reviewed_tasks
+            WHERE submission_id = ?
+            """,
+            (submission_id))).fetchone()
+            if task is not None:
+                return json.dumps({
+                    'success':False,
+                    'message': 'Task already accepted.'}
+                ), 400, {'ContentType':'application/json'}
         
         task = await (await cursor.execute("""
         SELECT * FROM submitted_tasks
@@ -194,42 +196,14 @@ async def accept_task():
         WHERE submission_id = ?
         """,
         (submission_id))
-        await cursor.execute("""
-        INSERT INTO reviewed_tasks
-        VALUES (?, ?, ?, ?)
-        """,
-        (task[0], task[1], task[2], task[3]))
-        await conn.commit()
 
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
-
-@app.post("/decline_task")
-async def decline_task():
-    data = await request.get_json(force=True)
-
-    try:
-        submission_id = data["submission_id"]
-    except KeyError:
-        abort(400)
-
-    async with conn.cursor() as cursor:
-        task = await (await cursor.execute("""
-        SELECT * FROM submitted_tasks
-        WHERE submission_id = ?
-        """,
-        (submission_id))).fetchone()
-        if task is None:
-            return json.dumps({
-                'success':False,
-                'message': 'Task does not exist.'}
-            ), 400, {'ContentType':'application/json'}
-
-        await cursor.execute("""
-        DELETE FROM submitted_tasks
-        WHERE submission_id = ?
-        """,
-        (submission_id))
-        await conn.commit()
+        if accepted:
+            await cursor.execute("""
+            INSERT INTO reviewed_tasks
+            VALUES (?, ?, ?, ?)
+            """,
+            (task[0], task[1], task[2], task[3]))
+            await conn.commit()
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
