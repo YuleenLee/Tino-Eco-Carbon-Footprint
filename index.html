@@ -16,14 +16,14 @@
       <ul id="nav">
         <a href="index.html"> <img id="logo" src="TinoEcoIcon.png"></a>
         <a href="services.html"> Services </a>
-        <a href="folder.html"> Folder </a>
+        <a href="submit.html"> Folder </a>
         <a href="news.html"> News </a>
       </ul>
     </nav>
 
     <h2>All Tasks</h2>
 
-    <h3>If many applications are received, we will be able to bring more graded categories such as age groups.<br>If there are very less applications and the winning prize goes to a piece with no effort, we have the right to retract the prize.</h3>
+    <h4>If many applications are received, we will be able to bring more graded categories such as age groups.<br>If there are very less applications and the winning prize goes to a piece with no effort, we have the right to retract the prize.</h4>
 
     <ul id="tabs">
       <a href="competitions.html"> Competitions </a>
@@ -42,33 +42,60 @@
       <div class="result-items">
         <div class="left">
           <h3>Art comp</h3>
-          <p>Hands-on, Competition</p>
+          <p>One time only, Hands-on, Competition</p>
         </div>
         <div class="right">
           <p>draw or make something related to Carbon Footprint (50pts)</p>
-          <button>start</button>
+          <p style="display: none;" class="description"> a. Deliverables: Art piece & explanation (100 words max) <br> b. Grading Categories: visual & explanation <br> i. 2D <br> ii. 3D <br> c. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br>iv. 1st place: 250 pts + $100</p>
+          <button class="button" role="button" onclick="displayDetails()">Details</button>
         </div>
       </div>
 
       <div class="result-items">
         <div class="left">
           <h3>Video comp</h3>
-          <p>Hands-on, Competition</p>
+          <p>One time only, Hands-on, Competition</p>
         </div>
         <div class="right">
           <p>make a video that shows the involvement of carbon footprint in our community or ways we can improve it (50pts)</p>
-          <button>start</button>
+          <p style="display: none;" class="description"> a. Deliverables: (3:00 - 5:00 mins) <br> b. Exampe: run through of daily activities and their carbon footprint, how can Cupertino residents improve their carbon footprint, and improvement plans the city can implement <br> c. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br> iv. 1st place: 250 pts + $100 </p>
+          <button class="button" role="button" onclick="displayDetails()">Details</button>
         </div>
       </div>
 
       <div class = "result-items">
         <div class = "left">
-          <h3>title</h3>
-          <p>description tags</p>
+          <h3>Poetry comp</h3>
+          <p>One time only, Hands-on, Competition</p>
         </div>
         <div class = "right">
-          <p>description</p>
-          <button>start</button>
+          <p>write a poetry about the environment (50pts)</p>
+          <p style="display: none;" class="description"> details</p>
+          <button class="button" role="button" onclick="displayDetails()">Details</button>
+        </div>
+      </div>
+
+      <div class = "result-items">
+        <div class = "left">
+          <h3>Transportation</h3>
+          <p>Multiple times, Transportation</p>
+        </div>
+        <div class = "right">
+          <p>Gain an understanding of the public transport system near you (85pts)</p>
+          <p style="display: none;" class="description"> details</p>
+    <button class="button" role="button" onclick="displayDetails()">Details</button>
+        </div>
+      </div>
+
+      <div class = "result-items">
+        <div class = "left">
+          <h3>Transportation</h3>
+          <p>One time only, Research, Transportation</p>
+        </div>
+        <div class = "right">
+          <p>Dive deeper into the effects of transportation (15pts)</p>
+          <p style="display: none;" class="description"> a. Which kinds of transportation contribute the most to your carbon footprint? The least? Why? (5pts)</p>
+          <button class="button" role="button" onclick="displayDetails()">Details</button>
         </div>
       </div>
     </div>
@@ -86,7 +113,8 @@
   </div>
   <div class = "right">
     <p>description</p>
-    <button>start</button>
+    <p style="display: none;" class="description"> details</p>
+    <button class="button" role="button" onclick="displayDetails()">Start</button>
   </div>
 </div>
 

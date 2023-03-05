@@ -1,7 +1,7 @@
 let searchForm = document.getElementById('search-form');
 let searchResultList = document.querySelectorAll('.result-items');
 let result = document.getElementById('search-results');
-let searchValue = result.getElementsByTagName("h3");
+let searchValue = result.getElementsByTagName('h3');
 
 searchForm.addEventListener("keyup", function() {
   for (var i = 0; i < searchValue.length; i++) {
@@ -16,3 +16,8 @@ searchForm.addEventListener("keyup", function() {
     }
   }
 });
+
+function displayDetails() {
+  var description = document.querySelector(".description");
+  description.style.display="block";
+}

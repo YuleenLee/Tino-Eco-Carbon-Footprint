@@ -30,6 +30,10 @@ h2 {
   float: left;
 }
 
+h4{
+  padding: 1rem;
+}
+
 .left,
 .right {
   display: inline-block;
@@ -39,6 +43,44 @@ h2 {
 .task {
   text-align: center;
 }
+
+p{
+  padding-bottom: 1rem;
+}
+
+
+.button{
+  font-size: 12px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  padding: 6px 10px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:after {
+  content: "";
+  background-color: lightblue;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
 
 #divider {
   width: 99%;
@@ -80,6 +122,6 @@ h2 {
     display: flex;
     gap: 20px;
     align-items: center;
-    padding: 8px 12px;
-    border-bottom: 1px solid black;
+    padding: 1rem 1rem;
+    border-bottom: 0.5px solid black;
 }
