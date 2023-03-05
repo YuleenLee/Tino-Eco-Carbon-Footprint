@@ -8,6 +8,7 @@ async def main():
             CREATE TABLE "users" (
                 "username" TEXT,
                 "password" TEXT,
+                "points" INTEGER,
                 PRIMARY KEY("username")
             )
             """)
@@ -18,16 +19,18 @@ async def main():
             )
             """)
             await cursor.execute("""
-            CREATE TABLE "reviewed_tasks" (
+            CREATE TABLE "submitted_tasks" (
+                "submission_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                 "task_id" INTEGER,
                 "username" TEXT,
-                "count" INTEGER,
+                "submission" TEXT,
                 FOREIGN KEY("task_id") REFERENCES "task_info"("task_id") ON DELETE CASCADE,
                 FOREIGN KEY("username") REFERENCES "users"("username") ON DELETE CASCADE
             )
             """)
             await cursor.execute("""
-            CREATE TABLE "submitted_tasks" (
+            CREATE TABLE "reviewed_tasks" (
+                "submission_id" INTEGER,
                 "task_id" INTEGER,
                 "username" TEXT,
                 "submission" TEXT,
