@@ -14,8 +14,7 @@ async def main():
             await cursor.execute("""
             CREATE TABLE "task_info" (
                 "task_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-                "limit" INTEGER,
-                "points" INTEGER
+                "limit" INTEGER
             )
             """)
             await cursor.execute("""
