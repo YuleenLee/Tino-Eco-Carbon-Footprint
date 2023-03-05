@@ -5,10 +5,10 @@ async def main():
     async with asqlite.connect('website.db') as conn:
         async with conn.cursor() as cursor:
             await cursor.execute("""
-            CREATE TABLE "users" (
+            CREATE TABLE "user_info" (
                 "username" TEXT,
                 "password" TEXT,
-                "points" INTEGER,
+                "points" INTEGER DEFAULT 0 CHECK(points>=0),
                 PRIMARY KEY("username")
             )
             """)
