@@ -142,7 +142,7 @@ async def submit_task():
                 'message': 'Invalid task.'}
             ), 400, {'ContentType':'application/json'}
         
-        if task1[0] + task2[0] >= task_limit[0]:
+        if task_limit[0] != -1 and task1[0] + task2[0] >= task_limit[0]:
             return json.dumps({
                 'success':False,
                 'message': 'Maximum submissions reached.'}
@@ -164,6 +164,7 @@ async def review_task():
     try:
         submission_id = data["submission_id"]
         accepted = data["accepted"]
+        points = data["points"]
     except KeyError:
         abort(400)
 
@@ -203,6 +204,19 @@ async def review_task():
             VALUES (?, ?, ?, ?)
             """,
             (task[0], task[1], task[2], task[3]))
+
+            user_points = (await (await cursor.execute("""
+            SELECT points FROM user_info
+            WHERE username = ?
+            """,
+            (task[2]))).fetchone())[0]
+            await cursor.execute("""
+            UPDATE user_info
+            SET points = ?
+            WHERE username = ?
+            """,
+            (user_points + points, task[2]))
+
             await conn.commit()
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
