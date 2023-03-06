@@ -1,45 +1,79 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  </head>
 
-<body>
-  <script src="script.js"></script>
-  <nav>
-    <ul id = "nav">
-      <a href = "index.html"> <img id = "logo" src = "TinoEcoIcon.png"> 
-      <a href = "services.html"> Services </a>
-      <a href = "folder.html"> Folder </a>
-      <a href = "news.html"> News </a>
+  <body>
+    <script src="script.js"></script>
+    <nav>
+      <ul id="nav">
+        <a href="index.html"> <img id="logo" src="TinoEcoIcon.png"></a>
+        <a href="services.html"> Services </a>
+        <a href="submit.html"> Submit </a>
+        <a href="news.html"> News </a>
+      </ul>
+    </nav>
+
+    <h2>All Tasks</h2>
+
+    <h4>If many applications are received, we will be able to bring more graded categories such as age groups.<br>If there are very less applications and the winning prize goes to a piece with no effort, we have the right to retract the prize.</h4>
+
+    <ul id="tabs">
+      <a href="competitions.html"> Competitions </a>
+      <a href="transportation.html"> Transportation </a>
+      <a href="renewableenergy.html"> Renewable Energy </a>
+      <a href="food.html"> Food </a>
+      <a href="miscellaneous.html"> Miscellaneous </a>
     </ul>
-  </nav>
 
-  <a href = "index.html"><h2>All Tasks</h2>
-    <ul id = "tabs">
-      <a href = "competitions.html"> Competitions </a>
-      <a href = "transportation.html"> Transportation </a>
-      <a href = "renewableenergy.html"> Renewable Energy </a>
-      <a href = "food.html"> Food </a>
-      <a href = "miscellaneous.html"> Miscellaneous </a>
-    </ul>
+    <div class="search-form">
+      <i class="bx bx-search-alt-2"></i>
+      <input type="text" id="search-form" placeholder="Search here...">
+    </div>
 
-    <div class = "task">
-      <div class = "left">
-        <h3 >title</h3>
-        <p>description tags</p>
+    <div class="search-results" id="search-results">
+      <div class="result-items">
+        <div class="left">
+          <h3>Art comp</h3>
+          <p>One time only, Hands-on, Competition</p>
+        </div>
+        <div class="right">
+          <p>draw or make something related to Carbon Footprint (50pts)</p>
+          <p style="display: none;" id="description"> a. Deliverables: Art piece & explanation (100 words max) <br> b. Grading Categories: visual & explanation <br> i. 2D <br> ii. 3D <br> c. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br>iv. 1st place: 250 pts + $100</p>
+          <button class="button" role="button" onclick="displayDetails()">Details</button>
+        </div>
       </div>
-      <div class = "right">
-        <p>description</p>
-        <button>start</button>
+
+      <div class="result-items">
+        <div class="left">
+          <h3>Video comp</h3>
+          <p>One time only, Hands-on, Competition</p>
+        </div>
+        <div class="right">
+          <p>make a video that shows the involvement of carbon footprint in our community or ways we can improve it (50pts)</p>
+          <p style="display: none;" id="description1"> a. Deliverables: (3:00 - 5:00 mins) <br> b. Exampe: run through of daily activities and their carbon footprint, how can Cupertino residents improve their carbon footprint, and improvement plans the city can implement <br> c. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br> iv. 1st place: 250 pts + $100 </p>
+          <button class="button" role="button" onclick="displayDetails1()">Details</button>
+        </div>
+      </div>
+
+      <div class = "result-items">
+        <div class = "left">
+          <h3>Poetry comp</h3>
+          <p>One time only, Hands-on, Competition</p>
+        </div>
+        <div class = "right">
+          <p>write a poetry about the environment (50pts)</p>
+          <p style="display: none;" id="description2">a. Deliverables: poetry & explanation/literary analysis (100-200 words) <br> b. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br> iv. 1st place: 250 pts + $100</p>
+          <button class="button" role="button" onclick="displayDetails2()">Details</button>
+        </div>
       </div>
     </div>
-    <img src = "divider.png" id = "divider">
-  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script> 
-</body>
-
+  </body>
 </html>
