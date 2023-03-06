@@ -69,7 +69,7 @@ async def login():
                 'message': 'Invalid login information.'}
             ), 400, {'ContentType':'application/json'} 
         
-        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.get("/submitted_tasks")
 async def submitted_tasks():
