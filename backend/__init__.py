@@ -75,7 +75,7 @@ async def login():
 async def submitted_tasks():
     tasks = []
     async with conn.cursor() as cursor:
-        for row in await conn.execute("""SELECT * FROM submitted_tasks"""):
+        for row in await (await conn.execute("""SELECT * FROM submitted_tasks""")).fetchall():
             tasks.append({
                 "submission_id": row[0],
                 "task_id": row[1],
@@ -89,7 +89,7 @@ async def submitted_tasks():
 async def reviewed_tasks():
     tasks = []
     async with conn.cursor() as cursor:
-        for row in await conn.execute("""SELECT * FROM reviewed_tasks"""):
+        for row in await (await conn.execute("""SELECT * FROM reviewed_tasks""")).fetchall():
             tasks.append({
                 "submission_id": row[0],
                 "task_id": row[1],
