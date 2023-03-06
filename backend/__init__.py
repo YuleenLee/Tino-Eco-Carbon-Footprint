@@ -85,11 +85,11 @@ async def submitted_tasks():
 
     return json.dumps({'success':True, 'data': tasks}), 200, {'ContentType':'application/json'}
 
-@app.get("/reviewed_tasks")
-async def reviewed_tasks():
+@app.get("/accepted_tasks")
+async def accepted_tasks():
     tasks = []
     async with conn.cursor() as cursor:
-        for row in await (await conn.execute("""SELECT * FROM reviewed_tasks""")).fetchall():
+        for row in await (await conn.execute("""SELECT * FROM accepted_tasks""")).fetchall():
             tasks.append({
                 "submission_id": row[0],
                 "task_id": row[1],
@@ -119,7 +119,7 @@ async def submit_task():
         (task_id, username, submission))).fetchone()
         task2 = await (await cursor.execute("""
         SELECT COUNT(*)
-        FROM reviewed_tasks
+        FROM accepted_tasks
         WHERE task_id = ? AND username = ? AND submission = ?
         """,
         (task_id, username, submission))).fetchone()
@@ -171,7 +171,7 @@ async def review_task():
     async with conn.cursor() as cursor:
         if accepted:
             task = await (await cursor.execute("""
-            SELECT 1 FROM reviewed_tasks
+            SELECT 1 FROM accepted_tasks
             WHERE submission_id = ?
             """,
             (submission_id))).fetchone()
@@ -200,7 +200,7 @@ async def review_task():
 
         if accepted:
             await cursor.execute("""
-            INSERT INTO reviewed_tasks
+            INSERT INTO accepted_tasks
             VALUES (?, ?, ?, ?)
             """,
             (task[0], task[1], task[2], task[3]))

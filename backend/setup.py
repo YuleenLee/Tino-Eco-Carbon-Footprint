@@ -29,7 +29,7 @@ async def main():
             )
             """)
             await cursor.execute("""
-            CREATE TABLE "reviewed_tasks" (
+            CREATE TABLE "accepted_tasks" (
                 "submission_id" INTEGER,
                 "task_id" INTEGER,
                 "username" TEXT,
