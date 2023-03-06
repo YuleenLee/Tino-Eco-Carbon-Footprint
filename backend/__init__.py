@@ -223,7 +223,7 @@ async def review_task():
 
 async def run():
     global session, cursor
-    async with aiohttp.ClientSession() as s, asqlite.connect('website.db') as c:
+    async with aiohttp.ClientSession() as s, asqlite.connect('backend/website.db') as c:
         session = s
         conn = c
         await app.run_task(host="0.0.0.0", port=3786)
