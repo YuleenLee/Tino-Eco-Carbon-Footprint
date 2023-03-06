@@ -18,6 +18,31 @@ searchForm.addEventListener("keyup", function() {
 });
 
 function displayDetails() {
-  var description = document.querySelector(".description");
+  var description = document.getElementById("description");
+  description.style.display="block";
+}
+
+function displayDetails1() {
+  var description = document.getElementById("description1");
+  description.style.display="block";
+}
+
+function displayDetails2() {
+  var description = document.getElementById("description2");
+  description.style.display="block";
+}
+
+function displayDetails3() {
+  var description = document.getElementById("description3");
+  description.style.display="block";
+}
+
+function displayDetails4() {
+  var description = document.getElementById("description4");
+  description.style.display="block";
+}
+
+function displayDetails5() {
+  var description = document.getElementById("description5");
   description.style.display="block";
 }
