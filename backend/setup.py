@@ -9,6 +9,7 @@ async def main():
                 "username" TEXT,
                 "password" TEXT,
                 "points" INTEGER DEFAULT 0 CHECK(points>=0),
+                "is_officer" BOOLEAN NOT NULL,
                 PRIMARY KEY("username")
             )
             """)
