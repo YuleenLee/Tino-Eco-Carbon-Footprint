@@ -14,7 +14,7 @@ async def main():
 
 @app.post("/create_account")
 async def create_account():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         username = data["username"]
@@ -47,7 +47,7 @@ async def create_account():
 
 @app.post("/login")
 async def login():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         username = data["username"]
@@ -101,7 +101,7 @@ async def accepted_tasks():
 
 @app.post("/submit_task")
 async def submit_task():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         username = data["username"]
@@ -159,7 +159,7 @@ async def submit_task():
 
 @app.post("/review_task")
 async def review_task():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         submission_id = data["submission_id"]
