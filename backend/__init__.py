@@ -1,8 +1,7 @@
-from quart import Quart, request, abort
+from quart import Quart, request, abort, jsonify
 import aiohttp
 import asyncio
 import asqlite
-import json
 
 app = Quart(__name__)
 session = None
@@ -14,7 +13,7 @@ async def main():
 
 @app.post("/create_account")
 async def create_account():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         username = data["username"]
@@ -31,10 +30,7 @@ async def create_account():
         (username))).fetchone()
 
         if user is not None:
-            return json.dumps({
-                'success':False,
-                'message': 'A user with that username already exists.'}
-            ), 400, {'ContentType':'application/json'} 
+            abort(404)
 
         await cursor.execute("""
         INSERT INTO user_info(username, password)
@@ -43,11 +39,11 @@ async def create_account():
         (username, password))
         await conn.commit()
 
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+    return jsonify({"success": True}), 201
 
 @app.post("/login")
 async def login():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         username = data["username"]
@@ -64,12 +60,9 @@ async def login():
         (username, password))).fetchone()
 
         if user is None:
-            return json.dumps({
-                'success':False,
-                'message': 'Invalid login information.'}
-            ), 400, {'ContentType':'application/json'} 
+            abort(404)
         
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+    return jsonify({"success": True}), 201
 
 @app.get("/submitted_tasks")
 async def submitted_tasks():
@@ -83,7 +76,7 @@ async def submitted_tasks():
                 "submission": row[3],
             })
 
-    return json.dumps({'success':True, 'data': tasks}), 200, {'ContentType':'application/json'}
+    return jsonify({"success": True, "data": tasks}), 200
 
 @app.get("/accepted_tasks")
 async def accepted_tasks():
@@ -97,11 +90,11 @@ async def accepted_tasks():
                 "submission": row[3],
             })
 
-    return json.dumps({'success':True, 'data': tasks}), 200, {'ContentType':'application/json'}
+    return jsonify({"success": True, "data": tasks}), 200
 
 @app.post("/submit_task")
 async def submit_task():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         username = data["username"]
@@ -125,10 +118,7 @@ async def submit_task():
         (task_id, username, submission))).fetchone()
 
         if task1 is not None or task2 is not None:
-            return json.dumps({
-                'success':False,
-                'message': 'Duplucate submission.'}
-            ), 400, {'ContentType':'application/json'}
+            abort(404)
         
         task_limit = await (await cursor.execute("""
         SELECT limit
@@ -137,16 +127,10 @@ async def submit_task():
         """,
         (task_id))).fetchone()
         if task_limit is None:
-            return json.dumps({
-                'success':False,
-                'message': 'Invalid task.'}
-            ), 400, {'ContentType':'application/json'}
+            abort(404)
         
         if task_limit[0] != -1 and task1[0] + task2[0] >= task_limit[0]:
-            return json.dumps({
-                'success':False,
-                'message': 'Maximum submissions reached.'}
-            ), 400, {'ContentType':'application/json'}
+            abort(404)
 
         await cursor.execute("""
         INSERT INTO submitted_tasks(task_id, username, submission)
@@ -155,11 +139,11 @@ async def submit_task():
         (task_id, username, submission))
         await conn.commit()
 
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+    return jsonify({"success": True}), 201
 
 @app.post("/review_task")
 async def review_task():
-    data = await request.get_json(force=True)
+    data = await request.form
 
     try:
         submission_id = data["submission_id"]
@@ -176,10 +160,7 @@ async def review_task():
             """,
             (submission_id))).fetchone()
             if task is not None:
-                return json.dumps({
-                    'success':False,
-                    'message': 'Task already accepted.'}
-                ), 400, {'ContentType':'application/json'}
+                abort(404)
         
         task = await (await cursor.execute("""
         SELECT * FROM submitted_tasks
@@ -187,10 +168,7 @@ async def review_task():
         """,
         (submission_id))).fetchone()
         if task is None:
-            return json.dumps({
-                'success':False,
-                'message': 'Task does not exist.'}
-            ), 400, {'ContentType':'application/json'}
+            abort(404)
 
         await cursor.execute("""
         DELETE FROM submitted_tasks
@@ -219,7 +197,7 @@ async def review_task():
 
             await conn.commit()
 
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+    return jsonify({"success": True}), 201
 
 async def run():
     global session, cursor
