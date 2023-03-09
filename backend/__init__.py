@@ -105,7 +105,7 @@ async def submit_task():
 
     try:
         username = data["username"]
-        task_id = data["task_id"]
+        task_id = int(data["task_id"])
         submission = data["submission"]
     except KeyError:
         abort(400)
@@ -162,9 +162,9 @@ async def review_task():
     data = await request.get_json(force=True)
 
     try:
-        submission_id = data["submission_id"]
-        accepted = data["accepted"]
-        points = data["points"]
+        submission_id = int(data["submission_id"])
+        accepted = bool(data["accepted"])
+        points = int(data["points"])
     except KeyError:
         abort(400)
 
