@@ -16,6 +16,7 @@ function isLoggedIn() {
 
 function requireLogIn() {
     if (!isLoggedIn()) {
+        alert("Please login.");
         window.location.href = "account.html";
     }
 }
