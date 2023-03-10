@@ -12,6 +12,8 @@
 
   <body>
     <script src="scripts/script.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/loggedIn.js"></script>
     <nav>
       <ul id="nav">
         <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
@@ -23,9 +25,14 @@
       </ul>
     </nav>
     <h3>Sign in</h3>
-    <input type="text" placeholder="username"> 
-    <input type="text" placeholder="password">
-    <button>enter</button>
-    
+    <div id="loginLogout"></div>
+    <script>
+      if (!isLoggedIn()) {
+        document.getElementById("loginLogout").innerHTML = "<form action='javascript:login(document.getElementById('usernameInput').value,document.getElementById('passwordInput').value)'><input id='usernameInput' type='text' placeholder='username'><input id='passwordInput' type='text' placeholder='password'><button>Login</button></form>"
+      }
+      else {
+        document.getElementById("loginLogout").innerHTML = "<button action='javascript:logout()'>Logout</button>"
+      }
+    </script>
   </body>
 </html>
