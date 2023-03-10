@@ -1,11 +1,14 @@
-from quart import Quart, Response, request, abort
+from quart import Quart, Response, request, session, abort
 import aiohttp
 import asyncio
 import asqlite
+import secrets
 
 app = Quart(__name__)
 session = None
 conn = None
+
+app.secret_key = secrets.token_hex()
 
 @app.route("/")
 async def main():
@@ -39,7 +42,7 @@ async def create_account():
         (username, password))
         await conn.commit()
 
-    return Response(status=204)
+    return Response(status=201)
 
 @app.post("/login")
 async def login():
@@ -61,8 +64,15 @@ async def login():
 
         if user is None:
             return {'message': 'Invalid login information.'}, 404
-        
-    return Response(status=204)
+    
+    session["username"] = username
+
+    return Response(status=201)
+
+@app.post("/logout")
+async def logout():
+    session.pop("username", None)
+    return Response(status=201)
 
 @app.get("/submitted_tasks")
 async def submitted_tasks():
