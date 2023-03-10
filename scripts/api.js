@@ -18,6 +18,7 @@ function login(username, password) {
         }
     }
     xhr.send(body);
+    window.location.href = "about.html";
 }
 
 function logout() {
@@ -28,4 +29,5 @@ function logout() {
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send();
+    window.location.href = "about.html";
 }
