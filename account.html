@@ -28,10 +28,10 @@
     <div id="loginLogout"></div>
     <script>
       if (!isLoggedIn()) {
-        document.getElementById("loginLogout").innerHTML = "<form action='javascript:login(document.getElementById('usernameInput').value,document.getElementById('passwordInput').value)'><input id='usernameInput' type='text' placeholder='username'><input id='passwordInput' type='text' placeholder='password'><button>Login</button></form>"
+        document.getElementById("loginLogout").innerHTML = "<form action='javascript:login(document.getElementById('usernameInput').value,document.getElementById('passwordInput').value)'><input id='usernameInput' type='text' placeholder='username'><input id='passwordInput' type='text' placeholder='password'><button>Login</button></form>";
       }
       else {
-        document.getElementById("loginLogout").innerHTML = "<button action='javascript:logout()'>Logout</button>"
+        document.getElementById("loginLogout").innerHTML = "<button action='javascript:logout()'>Logout</button>";
       }
     </script>
   </body>
