@@ -14,6 +14,10 @@ app.secret_key = secrets.token_hex()
 async def main():
     return "Online"
 
+@app.get("is_logged_in")
+async def is_logged_in():
+    return {"is_logged_in": "username" in session}, 200
+
 @app.post("/create_account")
 async def create_account():
     data = await request.form
