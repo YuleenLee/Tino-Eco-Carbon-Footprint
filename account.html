@@ -28,11 +28,13 @@
     <div id="loginLogout"></div>
     <script>
       if (!isLoggedIn()) {
-        document.getElementById("loginLogout").innerHTML = "<form action='javascript:login(document.getElementById('usernameInput').value,document.getElementById('passwordInput').value)'><input id='usernameInput' type='text' placeholder='username'><input id='passwordInput' type='text' placeholder='password'><button>Login</button></form>";
+        document.getElementById("loginLogout").innerHTML = "<form action='javascript:login(document.getElementById('loginUsernameInput').value,document.getElementById('loginPasswordInput').value)'><input id='loginUsernameInput' type='text' placeholder='username'><input id='loginPasswordInput' type='text' placeholder='password'><button>Login</button></form>";
       }
       else {
         document.getElementById("loginLogout").innerHTML = "<button action='javascript:logout()'>Logout</button>";
       }
     </script>
+    <h3>Create Account</h3>
+    <form action="javascript:create_account(document.getElementById('createUsernameInput').value,document.getElementById('createPasswordInput').value)"><input id='createUsernameInput' type='text' placeholder='username'><input id='createPasswordInput' type='text' placeholder='password'><button>Create Account</button></form>
   </body>
 </html>
