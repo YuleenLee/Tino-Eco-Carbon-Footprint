@@ -18,6 +18,19 @@ async def main():
 async def is_logged_in():
     return {"is_logged_in": "username" in session}, 200
 
+@app.get("/is_officer")
+async def is_officer():
+    if "username" not in session:
+        abort(401)
+    async with conn.cursor() as cursor:
+        user = await (await cursor.execute("""
+        SELECT 1
+        FROM user_info
+        WHERE username = ? AND is_officer = 1
+        """,
+        (session["username"]))).fetchone()
+    return {"is_officer": bool(user)}, 200
+
 @app.post("/create_account")
 async def create_account():
     data = await request.form
