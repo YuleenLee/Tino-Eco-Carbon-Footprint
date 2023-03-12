@@ -25,5 +25,17 @@
         <a href="account.html"> <img src="images/account.png"></a>
       </ul>
     </nav>
+    <form action="javascript:review_task(document.getElementById('acceptTaskId').value, true, document.getElementById('acceptTaskPoints').value)">
+      <input id='acceptTaskId' type='number' placeholder='0'>
+      <input id='acceptTaskPoints' type='number' placeholder='0'>
+      <button>Accept Task</button>
+    </form>
+    <form action="javascript:review_task(document.getElementById('rejectTaskId').value, false, 0)">
+      <input id='rejectTaskId' type='number' placeholder='0'>
+      <button>Reject Task</button>
+    </form>
+    <table id="submittedTasksList"></table>
+    <table id="acceptedTasksList"></table>
+    <script>fill_task_tables()</script>
   </body>
 </html>

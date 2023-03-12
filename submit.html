@@ -13,6 +13,7 @@
   <body>
     <script src="scripts/script.js"></script>
     <script src="scripts/authentication.js"></script>
+    <scripts src="scripts/api.js"></scripts>
     <script>requireLogIn()</script>
     <nav>
       <ul id="nav">
@@ -24,5 +25,10 @@
         <a href="account.html"> <img src="images/account.png"></a>
       </ul>
     </nav>
+    <form action="javascript:submit_task(document.getElementById('submitTaskId').value, document.getElementById('submitSubmission').value)">
+      <input id='submitTaskId' type='number' placeholder='0'>
+      <input id='submitSubmission' type='text' placeholder='submission'>
+      <button>Accept Task</button>
+    </form>
   </body>
 </html>
