@@ -11,7 +11,9 @@
   </head>
 
   <body>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/authentication.js"></script>
     <nav>
       <ul id="nav">
         <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
@@ -23,9 +25,20 @@
       </ul>
     </nav>
     <h3>Sign in</h3>
-    <input type="text" placeholder="username"> 
-    <input type="text" placeholder="password">
-    <button>enter</button>
-    
+    <div id="loginLogout"></div>
+    <script>
+      if (!isLoggedIn()) {
+        document.getElementById("loginLogout").innerHTML = "<form action='javascript:login(document.getElementById('loginUsernameInput').value,document.getElementById('loginPasswordInput').value)'><input id='loginUsernameInput' type='text' placeholder='username'><input id='loginPasswordInput' type='text' placeholder='password'><button>Login</button></form>";
+      }
+      else {
+        document.getElementById("loginLogout").innerHTML = "<button action='javascript:logout()'>Logout</button>";
+      }
+    </script>
+    <h3>Create Account</h3>
+    <form action="javascript:create_account(document.getElementById('createUsernameInput').value,document.getElementById('createPasswordInput').value)">
+      <input id='createUsernameInput' type='text' placeholder='username'>
+      <input id='createPasswordInput' type='text' placeholder='password'>
+      <button>Create Account</button>
+    </form>
   </body>
 </html>
