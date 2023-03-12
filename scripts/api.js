@@ -2,7 +2,7 @@ function create_account(username, password) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://localhost:3768/create_account"
+        "http://127.0.0.1:5000/create_account"
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -27,7 +27,7 @@ function login(username, password) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://localhost:3768/login"
+        "http://127.0.0.1:5000/login"
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -52,7 +52,7 @@ function logout() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://localhost:3768/logout"
+        "http://127.0.0.1:5000/logout"
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send();
@@ -63,7 +63,7 @@ function submit_task(task_id, submission) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://localhost:3768/submit_task"
+        "http://127.0.0.1:5000/submit_task"
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -88,7 +88,7 @@ function review_task(submission_id, accepted, points) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://localhost:3768/review_task"
+        "http://127.0.0.1:5000/review_task"
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -115,7 +115,7 @@ function fill_task_tables() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
-        "http://localhost:3768/accepted_tasks",
+        "http://127.0.0.1:5000/accepted_tasks",
     );
     xhr.send();
     xhr.onload = () => {
@@ -131,7 +131,7 @@ function fill_task_tables() {
     const xhr2 = new XMLHttpRequest();
     xhr2.open(
         "GET",
-        "http://localhost:3768/submitted_tasks",
+        "http://127.0.0.1:5000/submitted_tasks",
     );
     xhr2.send();
     xhr2.onload = () => {

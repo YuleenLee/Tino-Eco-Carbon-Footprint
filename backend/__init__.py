@@ -228,6 +228,6 @@ async def run():
     global conn
     async with asqlite.connect('backend/website.db') as c:
         conn = c
-        await app.run_task(host="0.0.0.0", port=3786)
+        await app.run_task()
 
 asyncio.run(run())

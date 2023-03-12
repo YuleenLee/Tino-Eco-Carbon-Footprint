@@ -2,7 +2,7 @@ function isLoggedIn() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
-        "http://localhost:3768/is_logged_in"
+        "http://127.0.0.1:5000/is_logged_in"
     );
     xhr.send();
     xhr.responseType = "json";
@@ -18,7 +18,7 @@ function isOfficer() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
-        "http://localhost:3768/is_officer"
+        "http://127.0.0.1:5000/is_officer"
     );
     xhr.send();
     xhr.responseType = "json";
