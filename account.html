@@ -11,7 +11,8 @@
   </head>
 
   <body>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/api.js"></script>
     <nav>
      <ul id="nav">
         <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
@@ -162,9 +163,8 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form>
+    <form action="javascript:create_account(document.getElementById('username').value,document.getElementById('password').value)">
         <h3>Login Here</h3>
-
         <label for="username">Username</label>
         <input type="text" placeholder="Name" id="username">
 
