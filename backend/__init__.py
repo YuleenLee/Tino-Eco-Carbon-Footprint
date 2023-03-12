@@ -36,7 +36,7 @@ async def create_account():
     data = await request.form
 
     try:
-        username = data["username"]
+        username = session["username"]
         password = data["password"]
     except KeyError:
         abort(400)
@@ -66,7 +66,7 @@ async def login():
     data = await request.form
 
     try:
-        username = data["username"]
+        username = session["username"]
         password = data["password"]
     except KeyError:
         abort(400)
@@ -124,7 +124,7 @@ async def submit_task():
     data = await request.form
 
     try:
-        username = data["username"]
+        username = session["username"]
         task_id = int(data["task_id"])
         submission = data["submission"]
     except KeyError:
