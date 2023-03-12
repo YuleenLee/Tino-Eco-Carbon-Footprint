@@ -15,10 +15,12 @@ function create_account(username, password) {
             if (xhr.status == 404) {
                 alert(data["message"]);
             }
+            else if (xhr.status == 201) {
+                alert("Account created.");
+            }
         }
     }
     xhr.send(body);
-    alert("Account created.");
 }
 
 function login(username, password) {
@@ -38,10 +40,12 @@ function login(username, password) {
             if (xhr.status == 404) {
                 alert(data["message"]);
             }
+            else if (xhr.status == 201) {
+                window.location.href = "about.html";
+            }
         }
     }
     xhr.send(body);
-    window.location.href = "about.html";
 }
 
 function logout() {
@@ -72,10 +76,12 @@ function submit_task(task_id, submission) {
             if (xhr.status == 404) {
                 alert(data["message"]);
             }
+            else if (xhr.status == 201) {
+                alert("Task submitted.");
+            }
         }
     }
     xhr.send(body);
-    alert("Task submitted.");
 }
 
 function review_task(submission_id, accepted, points) {
@@ -96,11 +102,13 @@ function review_task(submission_id, accepted, points) {
             if (xhr.status == 404) {
                 alert(data["message"]);
             }
+            else if (xhr.status == 201) {
+                alert("Task reviewed.");
+                window.location.href = "review.html";
+            }
         }
     }
     xhr.send(body);
-    alert("Task reviewed.");
-    window.location.href = "review.html";
 }
 
 function fill_task_tables() {

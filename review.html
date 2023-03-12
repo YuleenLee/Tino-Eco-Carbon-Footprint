@@ -27,12 +27,12 @@
       </ul>
     </nav>
     <form action="javascript:review_task(document.getElementById('acceptTaskId').value, true, document.getElementById('acceptTaskPoints').value)">
-      <input id='acceptTaskId' type='number' placeholder='0'>
-      <input id='acceptTaskPoints' type='number' placeholder='0'>
+      <input id='acceptTaskId' type='number' placeholder='submission id'>
+      <input id='acceptTaskPoints' type='number' placeholder='points'>
       <button>Accept Task</button>
     </form>
     <form action="javascript:review_task(document.getElementById('rejectTaskId').value, false, 0)">
-      <input id='rejectTaskId' type='number' placeholder='0'>
+      <input id='rejectTaskId' type='number' placeholder='submission id'>
       <button>Reject Task</button>
     </form>
     <table id="submittedTasksList"></table>

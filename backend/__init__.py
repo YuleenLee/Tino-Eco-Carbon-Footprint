@@ -166,7 +166,7 @@ async def submit_task():
         (task_id, username, submission))
         await conn.commit()
 
-    return Response(status=204)
+    return Response(status=201)
 
 @app.post("/review_task")
 async def review_task():
@@ -224,7 +224,7 @@ async def review_task():
 
             await conn.commit()
 
-    return Response(status=204)
+    return Response(status=201)
 
 async def run():
     global session, cursor
