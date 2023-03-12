@@ -111,6 +111,25 @@ function review_task(submission_id, accepted, points) {
     xhr.send(body);
 }
 
+function fill_leaderboard() {
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+        "GET",
+        "http://127.0.0.1:5000/leaderboard",
+    );
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            const data = JSON.parse(xhr.responseText)["data"];
+            var lbHtml = "<tr><th>Rank</th><th>Username</th><th>Points</th></tr>";
+            for (var i = 0; i < data.length; i++) {
+                lbHtml += `<tr><td>${i + 1}</td><td>${data["username"]}</td><td>${data["points"]}</td></tr>`;
+            }
+            document.getElementById("leaderboardTable").innerHTML = tableHtml;
+        }
+    }
+}
+
 function fill_task_tables() {
     const xhr = new XMLHttpRequest();
     xhr.open(
@@ -121,9 +140,9 @@ function fill_task_tables() {
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const data = JSON.parse(xhr.responseText)["data"];
-            var tableHtml = "";
+            var tableHtml = "<tr><th>Submission ID</th><th>Task ID</th><th>Submission</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                tableHtml += "<tr><td>" + data["submission_id"].toString() + "</td><td>" + data["task_id"].toString() + "</td><td>" + data["submission"].toString() + "</td></tr>";
+                tableHtml += `<tr><td>${data["submission_id"]}</td><td>${data["task_id"]}</td><td>${data["submission"]}</td></tr>`;
             }
             document.getElementById("acceptedTasksList").innerHTML = tableHtml;
         }
@@ -137,9 +156,9 @@ function fill_task_tables() {
     xhr2.onload = () => {
         if (xhr2.readyState == 4 && xhr2.status == 200) {
             const data = JSON.parse(xhr2.responseText)["data"];
-            var tableHtml = "";
+            var tableHtml = "<tr><th>Submission ID</th><th>Task ID</th><th>Submission</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                tableHtml += "<tr><td>" + data["submission_id"].toString() + "</td><td>" + data["task_id"].toString() + "</td><td>" + data["submission"].toString() + "</td></tr>";
+                tableHtml += `<tr><td>${data["submission_id"].toString()}</td><td>${data["task_id"].toString()}</td><td>${data["submission"].toString()}</td></tr>`;
             }
             document.getElementById("submittedTasksList").innerHTML = tableHtml;
         }

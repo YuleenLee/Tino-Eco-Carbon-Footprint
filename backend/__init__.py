@@ -117,6 +117,21 @@ async def accepted_tasks():
 
     return {'data': tasks}, 200
 
+@app.get("/leaderboard")
+async def leaderboard():
+    users = []
+    async with conn.cursor() as cursor:
+        for row in await (await cursor.execute("""
+        SELECT username, points FROM user_info
+        ORDER BY points DESC
+        """)).fetchall():
+            users.append({
+                "username": row[0],
+                "points": row[1],
+            })
+
+    return {'data': users}, 200
+
 @app.post("/submit_task")
 async def submit_task():
     data = await request.form
