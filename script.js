@@ -121,3 +121,153 @@ function displayDetails20() {
   var description = document.getElementById("description20");
   description.style.display="block";
 }
+
+function displayDetails21() {
+  var description = document.getElementById("description21");
+  description.style.display="block";
+}
+
+function displayDetails22() {
+  var description = document.getElementById("description22");
+  description.style.display="block";
+}
+
+function displayDetails23() {
+  var description = document.getElementById("description23");
+  description.style.display="block";
+}
+
+function displayDetails24() {
+  var description = document.getElementById("description24");
+  description.style.display="block";
+}
+
+function displayDetails25() {
+  var description = document.getElementById("description25");
+  description.style.display="block";
+}
+
+function displayDetails26() {
+  var description = document.getElementById("description26");
+  description.style.display="block";
+}
+
+function displayDetails27() {
+  var description = document.getElementById("description27");
+  description.style.display="block";
+}
+
+function displayDetails28() {
+  var description = document.getElementById("description28");
+  description.style.display="block";
+}
+
+function displayDetails29() {
+  var description = document.getElementById("description29");
+  description.style.display="block";
+}
+
+function displayDetails30() {
+  var description = document.getElementById("description30");
+  description.style.display="block";
+}
+
+function displayDetails31() {
+  var description = document.getElementById("description31");
+  description.style.display="block";
+}
+
+function displayDetails32() {
+  var description = document.getElementById("description32");
+  description.style.display="block";
+}
+
+function displayDetails33() {
+  var description = document.getElementById("description33");
+  description.style.display="block";
+}
+
+function displayDetails34() {
+  var description = document.getElementById("description34");
+  description.style.display="block";
+}
+
+function displayDetails35() {
+  var description = document.getElementById("description35");
+  description.style.display="block";
+}
+
+function displayDetails36() {
+  var description = document.getElementById("description36");
+  description.style.display="block";
+}
+
+function displayDetails37() {
+  var description = document.getElementById("description37");
+  description.style.display="block";
+}
+
+function displayDetails38() {
+  var description = document.getElementById("description38");
+  description.style.display="block";
+}
+
+function displayDetails39() {
+  var description = document.getElementById("description39");
+  description.style.display="block";
+}
+
+function displayDetails40() {
+  var description = document.getElementById("description40");
+  description.style.display="block";
+}
+
+function displayDetails41() {
+  var description = document.getElementById("description41");
+  description.style.display="block";
+}
+
+function displayDetails42() {
+  var description = document.getElementById("description42");
+  description.style.display="block";
+}
+
+function displayDetails43() {
+  var description = document.getElementById("description43");
+  description.style.display="block";
+}
+
+function displayDetails44() {
+  var description = document.getElementById("description44");
+  description.style.display="block";
+}
+
+function displayDetails45() {
+  var description = document.getElementById("description45");
+  description.style.display="block";
+}
+
+function displayDetails46() {
+  var description = document.getElementById("description46");
+  description.style.display="block";
+}
+
+function displayDetails47() {
+  var description = document.getElementById("description47");
+  description.style.display="block";
+}
+
+function displayDetails48() {
+  var description = document.getElementById("description48");
+  description.style.display="block";
+}
+
+function displayDetails49() {
+  var description = document.getElementById("description49");
+  description.style.display="block";
+}
+
+function displayDetails50() {
+  var description = document.getElementById("description50");
+  description.style.display="block";
+}
