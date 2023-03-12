@@ -1,11 +1,9 @@
 from quart import Quart, Response, request, session, abort
-import aiohttp
 import asyncio
 import asqlite
 import secrets
 
 app = Quart(__name__)
-session = None
 conn = None
 
 app.secret_key = secrets.token_hex()
@@ -227,9 +225,8 @@ async def review_task():
     return Response(status=201)
 
 async def run():
-    global session, conn
-    async with aiohttp.ClientSession() as s, asqlite.connect('backend/website.db') as c:
-        session = s
+    global conn
+    async with asqlite.connect('backend/website.db') as c:
         conn = c
         await app.run_task(host="0.0.0.0", port=3786)
 
