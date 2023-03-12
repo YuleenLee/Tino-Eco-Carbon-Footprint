@@ -7,32 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>replit</title>
     <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
   </head>
 
   <body>
-    <script src="scripts/script.js"></script>
+    <script src="script.js"></script>
     <nav>
       <ul id="nav">
         <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html"> About </a>
-        <a href="tasks.html"> Tasks </a>
-        <a href="submit.html"> Submit </a>
-        <a href="rewards.html"> Rewards </a>
-        <a href="account.html"> <img src="images/account.png"></a>
+        <a href="about.html" class = "linknav"> About </a>
+        <a href="tasks.html" class = "linknav"> Tasks </a>
+        <a href="submit.html" class = "linknav"> Submit </a>
+        <a href="prizes.html" class = "linknav"> Prizes </a>
+        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
+      
       </ul>
     </nav>
-
-    <h2>All Tasks</h2>
-
-    <h4>If many applications are received, we will be able to bring more graded categories such as age groups.<br>If there are very less applications and the winning prize goes to a piece with no effort, we have the right to retract the prize.</h4>
-
+    <div class = "taskinfo">
+      <h1>All Tasks</h1>
+  
+      <h4 style = "color: #be6060">If many applications are received, we will be able to bring more graded categories such as age groups.<br>If there are very less applications and the winning prize goes to a piece with no effort, we have the right to retract the prize.</h4>
+    </div>
     <ul id="tabs">
-      <a href="competitions.html"> Competitions </a>
-      <a href="transportation.html"> Transportation </a>
-      <a href="renewableenergy.html"> Renewable Energy </a>
-      <a href="food.html"> Food </a>
-      <a href="miscellaneous.html"> Miscellaneous </a>
+      <button class = "btabs"><a href="competitions.html"> Competitions </a></button>
+      <button class = "btabs"><a href="transportation.html"> Transportation </a></button>
+      <button class = "btabs"><a href="renewableenergy.html"> Renewable Energy </a></button>
+      <button class = "btabs"><a href="food.html"> Food </a></button>
+      <button class = "btabs"><a href="miscellaneous.html"> Miscellaneous </a></button>
     </ul>
 
     <div class="search-form">
@@ -43,7 +47,7 @@
     <div class="search-results" id="search-results">
       <div class="result-items">
         <div class="left">
-          <h3>Art comp</h3>
+          <h3>1. Art comp</h3>
           <p>One time only, Hands-on, Competition</p>
         </div>
         <div class="right">
@@ -52,10 +56,10 @@
           <button class="button" role="button" onclick="displayDetails()">Details</button>
         </div>
       </div>
-
+<!--
       <div class="result-items">
         <div class="left">
-          <h3>Video comp</h3>
+          <h3>2. Video comp</h3>
           <p>One time only, Hands-on, Competition</p>
         </div>
         <div class="right">
@@ -64,10 +68,10 @@
           <button class="button" role="button" onclick="displayDetails1()">Details</button>
         </div>
       </div>
-
+-->
       <div class = "result-items">
         <div class = "left">
-          <h3>Poetry comp</h3>
+          <h3>2. Poetry comp</h3>
           <p>One time only, Hands-on, Competition</p>
         </div>
         <div class = "right">
@@ -79,7 +83,7 @@
 
       <div class = "result-items">
         <div class = "left">
-          <h3>Transportation</h3>
+          <h3>3. Transportation</h3>
           <p>Multiple times, Transportation</p>
         </div>
         <div class = "right">
@@ -91,7 +95,7 @@
 
       <div class = "result-items">
         <div class = "left">
-          <h3>Transportation</h3>
+          <h3>4. Transportation</h3>
           <p>One time only, Research, Transportation</p>
         </div>
         <div class = "right">
@@ -103,7 +107,7 @@
 
       <div class = "result-items">
         <div class = "left">
-          <h3>Transportation</h3>
+          <h3>5. Transportation</h3>
           <p>Multiple Times, Research, Transportation</p>
         </div>
         <div class = "right">
@@ -115,7 +119,7 @@
 
       <div class = "result-items">
         <div class = "left">
-          <h3>Transportation</h3>
+          <h3>6. Transportation</h3>
           <p>One time only, Research, Transportation</p>
         </div>
         <div class = "right">
@@ -127,7 +131,7 @@
 
       <div class = "result-items">
         <div class = "left">
-          <h3>Transportation</h3>
+          <h3>7. Transportation</h3>
           <p>Videos, Multiple times, Transportation</p>
         </div>
         <div class = "right">
@@ -139,13 +143,49 @@
 
       <div class = "result-items">
         <div class = "left">
-          <h3>Transportation</h3>
-          <p>description tags</p>
+          <h3>8. Transportation</h3>
+          <p>Multiple times, Transportation</p>
         </div>
         <div class = "right">
-          <p>description</p>
-          <p style="display: none;" id="description"> details</p>
-          <button class="button" role="button" onclick="displayDetails()">Details</button>
+          <p>Read this article and answer these questions (15pts)</p>
+          <p style="display: none;" id="description8"> a. <a href="https://www.transportation.gov/priorities/climate-and-sustainability/climate-action"> Transportation climate action </a> (15pts) <br> i. <a href="https://docs.google.com/document/d/1E63dxRC3rVG5c5ocC5AQW-LSPRK0lI1n8m20QAr8aqU/edit?usp=sharing"> Questions</a></p>
+          <button class="button" role="button" onclick="displayDetails8()">Details</button>
+        </div>
+      </div>
+
+      <div class = "result-items">
+        <div class = "left">
+          <h3>9. Transportation</h3>
+          <p>One time only, Transportation</p>
+        </div>
+        <div class = "right">
+          <p>Try to reduce your own digital footprint by biking/walking</p>
+          <p style="display: none;" id="description9">a. 1 mile = 5 points <br> b. Log your data into Strava, take a screenshot and send it to us. </p>
+          <button class="button" role="button" onclick="displayDetails9()">Details</button>
+        </div>
+      </div>
+
+      <div class = "result-items">
+        <div class = "left">
+          <h3>10. Transportation</h3>
+          <p>Unlimited, Hands-on, Transportation</p>
+        </div>
+        <div class = "right">
+          <p>Compare and Contrast the public transportation system here to other countries/counties (30pts)</p>
+          <p style="display: none;" id="description10"> a. Look at one of the transportation systems nearby you <br> b. Compare it to other countries/counties with successful transportation systems (20pts) <br> i. Compare and contrast 5 different factors <br> c. Propose a way to improve our transportation system (15pts) <br> i. 5-8 sentences</p>
+          <button class="button" role="button" onclick="displayDetails10()">Details</button>
+        </div>
+      </div>
+
+      <div class = "result-items">
+        <div class = "left">
+          <h3>11. Transportation</h3>
+          <p>Multiple times, Research, Transportation</p>
+        </div>
+        <div class = "right">
+          <p>Research how electric cars work (30pts)</p>
+          <p style="display: none;" id="description11">a. Write 2 paragraphs (10-16 sentences) on your findings</p>
+          <button class="button" role="button" onclick="displayDetails11()">Details</button>
         </div>
       </div>
     </div>

@@ -1,39 +1,20 @@
-from quart import Quart, Response, request, session, abort
+from quart import Quart, request, abort
 import aiohttp
 import asyncio
 import asqlite
-import secrets
+import json
 
 app = Quart(__name__)
 session = None
 conn = None
 
-app.secret_key = secrets.token_hex()
-
 @app.route("/")
 async def main():
     return "Online"
 
-@app.get("/is_logged_in")
-async def is_logged_in():
-    return {"is_logged_in": "username" in session}, 200
-
-@app.get("/is_officer")
-async def is_officer():
-    if "username" not in session:
-        abort(401)
-    async with conn.cursor() as cursor:
-        user = await (await cursor.execute("""
-        SELECT 1
-        FROM user_info
-        WHERE username = ? AND is_officer = 1
-        """,
-        (session["username"]))).fetchone()
-    return {"is_officer": bool(user)}, 200
-
 @app.post("/create_account")
 async def create_account():
-    data = await request.form
+    data = await request.get_json(force=True)
 
     try:
         username = session["username"]
@@ -50,7 +31,10 @@ async def create_account():
         (username))).fetchone()
 
         if user is not None:
-            return {'message': 'A user with that username already exists.'}, 404
+            return json.dumps({
+                'success':False,
+                'message': 'A user with that username already exists.'}
+            ), 400, {'ContentType':'application/json'} 
 
         await cursor.execute("""
         INSERT INTO user_info(username, password)
@@ -59,11 +43,11 @@ async def create_account():
         (username, password))
         await conn.commit()
 
-    return Response(status=201)
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.post("/login")
 async def login():
-    data = await request.form
+    data = await request.get_json(force=True)
 
     try:
         username = session["username"]
@@ -80,16 +64,12 @@ async def login():
         (username, password))).fetchone()
 
         if user is None:
-            return {'message': 'Invalid login information.'}, 404
-    
-    session["username"] = username
-
-    return Response(status=201)
-
-@app.post("/logout")
-async def logout():
-    session.pop("username", None)
-    return Response(status=201)
+            return json.dumps({
+                'success':False,
+                'message': 'Invalid login information.'}
+            ), 400, {'ContentType':'application/json'} 
+        
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.get("/submitted_tasks")
 async def submitted_tasks():
@@ -103,7 +83,7 @@ async def submitted_tasks():
                 "submission": row[3],
             })
 
-    return {'data': tasks}, 200
+    return json.dumps({'success':True, 'data': tasks}), 200, {'ContentType':'application/json'}
 
 @app.get("/accepted_tasks")
 async def accepted_tasks():
@@ -117,11 +97,11 @@ async def accepted_tasks():
                 "submission": row[3],
             })
 
-    return {'data': tasks}, 200
+    return json.dumps({'success':True, 'data': tasks}), 200, {'ContentType':'application/json'}
 
 @app.post("/submit_task")
 async def submit_task():
-    data = await request.form
+    data = await request.get_json(force=True)
 
     try:
         username = session["username"]
@@ -145,7 +125,10 @@ async def submit_task():
         (task_id, username, submission))).fetchone()
 
         if task1 is not None or task2 is not None:
-            return {'message': 'Duplucate submission.'}, 404
+            return json.dumps({
+                'success':False,
+                'message': 'Duplucate submission.'}
+            ), 400, {'ContentType':'application/json'}
         
         task_limit = await (await cursor.execute("""
         SELECT limit
@@ -154,10 +137,16 @@ async def submit_task():
         """,
         (task_id))).fetchone()
         if task_limit is None:
-            return {'message': 'Invalid task.'}, 404
+            return json.dumps({
+                'success':False,
+                'message': 'Invalid task.'}
+            ), 400, {'ContentType':'application/json'}
         
         if task_limit[0] != -1 and task1[0] + task2[0] >= task_limit[0]:
-            return {'message': 'Maximum submissions reached.'}, 404
+            return json.dumps({
+                'success':False,
+                'message': 'Maximum submissions reached.'}
+            ), 400, {'ContentType':'application/json'}
 
         await cursor.execute("""
         INSERT INTO submitted_tasks(task_id, username, submission)
@@ -166,16 +155,16 @@ async def submit_task():
         (task_id, username, submission))
         await conn.commit()
 
-    return Response(status=204)
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @app.post("/review_task")
 async def review_task():
-    data = await request.form
+    data = await request.get_json(force=True)
 
     try:
-        submission_id = int(data["submission_id"])
-        accepted = bool(data["accepted"])
-        points = int(data["points"])
+        submission_id = data["submission_id"]
+        accepted = data["accepted"]
+        points = data["points"]
     except KeyError:
         abort(400)
 
@@ -187,7 +176,10 @@ async def review_task():
             """,
             (submission_id))).fetchone()
             if task is not None:
-                return {'message': 'Task already accepted.'}, 404
+                return json.dumps({
+                    'success':False,
+                    'message': 'Task already accepted.'}
+                ), 400, {'ContentType':'application/json'}
         
         task = await (await cursor.execute("""
         SELECT * FROM submitted_tasks
@@ -195,7 +187,10 @@ async def review_task():
         """,
         (submission_id))).fetchone()
         if task is None:
-            return {'message': 'Task does not exist.'}, 404
+            return json.dumps({
+                'success':False,
+                'message': 'Task does not exist.'}
+            ), 400, {'ContentType':'application/json'}
 
         await cursor.execute("""
         DELETE FROM submitted_tasks
@@ -224,7 +219,7 @@ async def review_task():
 
             await conn.commit()
 
-    return Response(status=204)
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 async def run():
     global session, cursor
