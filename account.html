@@ -69,7 +69,7 @@ body{
     right: -30px;
     bottom: -80px;
 }
-form{
+.form1{
     height: 520px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
@@ -83,14 +83,43 @@ form{
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
 }
-form *{
+.form1 *{
     font-family: 'Poppins',sans-serif;
     color: #000;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
-form h3{
+.form1 h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+.form2{
+    height: 520px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    float: right;
+/*     right: 25%; */
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+.form2 *{
+    font-family: 'Poppins',sans-serif;
+    color: #000;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.form2 h3{
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
@@ -159,12 +188,15 @@ button{
     </style>
 </head>
 <body>
-    <div class="background">
+<!--     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
-    </div>
-    <form action="javascript:login(document.getElementById('username').value,document.getElementById('password').value)">
-        <h3>Login Here</h3>
+    </div> -->
+<div class = "totallogin" style = "display: flex; flex-direction: row;">
+  <div class = "login">
+    
+    <form action="javascript:login(document.getElementById('username').value,document.getElementById('password').value)" class = "form1">
+        <h3>Login </h3>
         <label for="username">Username</label>
         <input type="text" placeholder="Name" id="username">
 
@@ -177,5 +209,23 @@ button{
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div> -->
     </form>
+  </div>
+<div class = "signupthing" style = "">
+  <form action="javascript:create_account(document.getElementById('username').value,document.getElementById('password').value)" class = "form2">
+        <h3>Sign up </h3>
+        <label for="username">Username</label>
+        <input type="text" placeholder="Name" id="username">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password">
+
+        <button>Sign Up </button>
+<!--         <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div> -->
+    </form>
+</div>
+</div>
   </body>
 </html>
