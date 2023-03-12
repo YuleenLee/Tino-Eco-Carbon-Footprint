@@ -95,7 +95,7 @@ async def logout():
 async def submitted_tasks():
     tasks = []
     async with conn.cursor() as cursor:
-        for row in await (await conn.execute("""SELECT * FROM submitted_tasks""")).fetchall():
+        for row in await (await cursor.execute("""SELECT * FROM submitted_tasks""")).fetchall():
             tasks.append({
                 "submission_id": row[0],
                 "task_id": row[1],
@@ -109,7 +109,7 @@ async def submitted_tasks():
 async def accepted_tasks():
     tasks = []
     async with conn.cursor() as cursor:
-        for row in await (await conn.execute("""SELECT * FROM accepted_tasks""")).fetchall():
+        for row in await (await cursor.execute("""SELECT * FROM accepted_tasks""")).fetchall():
             tasks.append({
                 "submission_id": row[0],
                 "task_id": row[1],
@@ -227,7 +227,7 @@ async def review_task():
     return Response(status=201)
 
 async def run():
-    global session, cursor
+    global session, conn
     async with aiohttp.ClientSession() as s, asqlite.connect('backend/website.db') as c:
         session = s
         conn = c
