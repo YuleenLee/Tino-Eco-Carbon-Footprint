@@ -41,7 +41,7 @@ function login(username, password) {
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
-                window.location.href = "about.html";
+                window.location.href = "index.html";
             }
         }
     }
