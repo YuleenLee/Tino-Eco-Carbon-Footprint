@@ -4,7 +4,7 @@ import asqlite
 import secrets
 
 HEADERS = {
-    'Access-Control-Allow-Origin': 'null',
+    'Access-Control-Allow-Origin': '*',
 }
 
 app = Quart(__name__)
@@ -35,10 +35,10 @@ async def is_officer():
 
 @app.post("/create_account")
 async def create_account():
-    data = await request.form
+    data = await request.get_json(force=True)
 
     try:
-        username = session["username"]
+        username = data["username"]
         password = data["password"]
     except KeyError:
         abort(400)
@@ -65,10 +65,10 @@ async def create_account():
 
 @app.post("/login")
 async def login():
-    data = await request.form
-
+    data = await request.get_json(force=True)
+    
     try:
-        username = session["username"]
+        username = data["username"]
         password = data["password"]
     except KeyError:
         abort(400)
@@ -138,7 +138,7 @@ async def leaderboard():
 
 @app.post("/submit_task")
 async def submit_task():
-    data = await request.form
+    data = await request.get_json(force=True)
 
     try:
         username = session["username"]
@@ -187,7 +187,7 @@ async def submit_task():
 
 @app.post("/review_task")
 async def review_task():
-    data = await request.form
+    data = await request.get_json(force=True)
 
     try:
         submission_id = int(data["submission_id"])
