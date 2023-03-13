@@ -3,6 +3,10 @@ import asyncio
 import asqlite
 import secrets
 
+HEADERS = {
+    'Access-Control-Allow-Origin': 'null',
+}
+
 app = Quart(__name__)
 conn = None
 
@@ -10,11 +14,11 @@ app.secret_key = secrets.token_hex()
 
 @app.route("/")
 async def main():
-    return "Online"
+    return "Online."
 
 @app.get("/is_logged_in")
 async def is_logged_in():
-    return {"is_logged_in": "username" in session}, 200
+    return {"is_logged_in": "username" in session}, 200, HEADERS
 
 @app.get("/is_officer")
 async def is_officer():
@@ -27,7 +31,7 @@ async def is_officer():
         WHERE username = ? AND is_officer = 1
         """,
         (session["username"]))).fetchone()
-    return {"is_officer": bool(user)}, 200
+    return {"is_officer": bool(user)}, 200, HEADERS
 
 @app.post("/create_account")
 async def create_account():
@@ -48,7 +52,7 @@ async def create_account():
         (username))).fetchone()
 
         if user is not None:
-            return {'message': 'A user with that username already exists.'}, 404
+            return {'message': 'A user with that username already exists.'}, 404, HEADERS
 
         await cursor.execute("""
         INSERT INTO user_info(username, password)
@@ -57,7 +61,7 @@ async def create_account():
         (username, password))
         await conn.commit()
 
-    return Response(status=201)
+    return Response(status=201, headers=HEADERS)
 
 @app.post("/login")
 async def login():
@@ -78,16 +82,16 @@ async def login():
         (username, password))).fetchone()
 
         if user is None:
-            return {'message': 'Invalid login information.'}, 404
+            return {'message': 'Invalid login information.'}, 404, HEADERS
     
     session["username"] = username
 
-    return Response(status=201)
+    return Response(status=201, headers=HEADERS)
 
 @app.post("/logout")
 async def logout():
     session.pop("username", None)
-    return Response(status=201)
+    return Response(status=201, headers=HEADERS)
 
 @app.get("/submitted_tasks")
 async def submitted_tasks():
@@ -101,7 +105,7 @@ async def submitted_tasks():
                 "submission": row[3],
             })
 
-    return {'data': tasks}, 200
+    return {'data': tasks}, 200, HEADERS
 
 @app.get("/accepted_tasks")
 async def accepted_tasks():
@@ -115,7 +119,7 @@ async def accepted_tasks():
                 "submission": row[3],
             })
 
-    return {'data': tasks}, 200
+    return {'data': tasks}, 200, HEADERS
 
 @app.get("/leaderboard")
 async def leaderboard():
@@ -130,7 +134,7 @@ async def leaderboard():
                 "points": row[1],
             })
 
-    return {'data': users}, 200
+    return {'data': users}, 200, HEADERS
 
 @app.post("/submit_task")
 async def submit_task():
@@ -158,7 +162,7 @@ async def submit_task():
         (task_id, username, submission))).fetchone()
 
         if task1 is not None or task2 is not None:
-            return {'message': 'Duplucate submission.'}, 404
+            return {'message': 'Duplucate submission.'}, 404, HEADERS
         
         task_limit = await (await cursor.execute("""
         SELECT limit
@@ -167,10 +171,10 @@ async def submit_task():
         """,
         (task_id))).fetchone()
         if task_limit is None:
-            return {'message': 'Invalid task.'}, 404
+            return {'message': 'Invalid task.'}, 404, HEADERS
         
         if task_limit[0] != -1 and task1[0] + task2[0] >= task_limit[0]:
-            return {'message': 'Maximum submissions reached.'}, 404
+            return {'message': 'Maximum submissions reached.'}, 404, HEADERS
 
         await cursor.execute("""
         INSERT INTO submitted_tasks(task_id, username, submission)
@@ -179,7 +183,7 @@ async def submit_task():
         (task_id, username, submission))
         await conn.commit()
 
-    return Response(status=201)
+    return Response(status=201, headers=HEADERS)
 
 @app.post("/review_task")
 async def review_task():
@@ -200,7 +204,7 @@ async def review_task():
             """,
             (submission_id))).fetchone()
             if task is not None:
-                return {'message': 'Task already accepted.'}, 404
+                return {'message': 'Task already accepted.'}, 404, HEADERS
         
         task = await (await cursor.execute("""
         SELECT * FROM submitted_tasks
@@ -208,7 +212,7 @@ async def review_task():
         """,
         (submission_id))).fetchone()
         if task is None:
-            return {'message': 'Task does not exist.'}, 404
+            return {'message': 'Task does not exist.'}, 404, HEADERS
 
         await cursor.execute("""
         DELETE FROM submitted_tasks
@@ -237,7 +241,7 @@ async def review_task():
 
             await conn.commit()
 
-    return Response(status=201)
+    return Response(status=201, headers=HEADERS)
 
 async def run():
     global conn
