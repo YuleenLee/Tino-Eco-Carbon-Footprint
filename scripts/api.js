@@ -11,8 +11,8 @@ function create_account(username, password) {
     });
     xhr.onload = () => {
         if (xhr.readyState == 4) {
-            const data = JSON.parse(xhr.responseText);
             if (xhr.status == 404) {
+                const data = JSON.parse(xhr.responseText);
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
@@ -36,8 +36,8 @@ function login(username, password) {
     });
     xhr.onload = () => {
         if (xhr.readyState == 4) {
-            const data = JSON.parse(xhr.responseText);
             if (xhr.status == 404) {
+                const data = JSON.parse(xhr.responseText);
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
@@ -72,8 +72,8 @@ function submit_task(task_id, submission) {
     });
     xhr.onload = () => {
         if (xhr.readyState == 4) {
-            const data = JSON.parse(xhr.responseText);
             if (xhr.status == 404) {
+                const data = JSON.parse(xhr.responseText);
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
@@ -98,8 +98,8 @@ function review_task(submission_id, accepted, points) {
     });
     xhr.onload = () => {
         if (xhr.readyState == 4) {
-            const data = JSON.parse(xhr.responseText);
             if (xhr.status == 404) {
+                const data = JSON.parse(xhr.responseText);
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
