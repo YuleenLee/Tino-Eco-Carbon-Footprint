@@ -76,7 +76,7 @@ body{
     position: absolute;
     transform: translate(-50%,-50%);
     top: 50%;
-    left: 50%;
+    left:65%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
@@ -104,8 +104,8 @@ body{
     position: absolute;
     transform: translate(-50%,-50%);
     top: 50%;
-    float: right;
-/*     right: 25%; */
+/*     float: left; */
+    right: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
@@ -195,13 +195,13 @@ button{
 <div class = "totallogin" style = "display: flex; flex-direction: row;">
   <div class = "login">
     
-    <form action="javascript:login(document.getElementById('loginusername').value,document.getElementById('loginpassword').value)" class = "form1">
+    <form action="javascript:login(document.getElementById('username').value,document.getElementById('password').value)" class = "form1">
         <h3>Login </h3>
         <label for="username">Username</label>
-        <input type="text" placeholder="Name" id="loginusername">
+        <input type="text" placeholder="Name" id="username">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="loginpassword">
+        <input type="password" placeholder="Password" id="password">
 
         <button>Log In</button>
 <!--         <div class="social">
@@ -210,14 +210,14 @@ button{
         </div> -->
     </form>
   </div>
-<div class = "signupthing" style = "">
-  <form action="javascript:create_account(document.getElementById('logoutusername').value,document.getElementById('logoutpassword').value)" class = "form2">
+<div class = "signupthing" >
+  <form action="javascript:create_account(document.getElementById('username').value,document.getElementById('password').value)" class = "form2">
         <h3>Sign up </h3>
         <label for="username">Username</label>
-        <input type="text" placeholder="Name" id="logoutusername">
+        <input type="text" placeholder="Name" id="username">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="logoutpassword">
+        <input type="password" placeholder="Password" id="password">
 
         <button>Sign Up </button>
 <!--         <div class="social">
