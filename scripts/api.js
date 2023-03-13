@@ -125,7 +125,7 @@ function fill_leaderboard() {
             for (var i = 0; i < data.length; i++) {
                 lbHtml += `<tr><td>${i + 1}</td><td>${data["username"]}</td><td>${data["points"]}</td></tr>`;
             }
-            document.getElementById("leaderboardTable").innerHTML = tableHtml;
+            document.getElementById("leaderboardTable").innerHTML = lbHtml;
         }
     }
 }
