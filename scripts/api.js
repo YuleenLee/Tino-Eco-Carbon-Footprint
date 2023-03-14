@@ -49,17 +49,6 @@ function login(username, password) {
     xhr.send(body);
 }
 
-function logout() {
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-        "POST",
-        "http://127.0.0.1:5000/logout"
-    );
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send();
-    window.location.href = "about.html";
-}
-
 function submit_task(task_id, submission) {
     const xhr = new XMLHttpRequest();
     xhr.open(
@@ -69,7 +58,7 @@ function submit_task(task_id, submission) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
         "task_id": task_id,
-        "username": sessionStorage.get("username"),
+        "username": sessionStorage.getItem("username"),
         "submission": submission,
     });
     xhr.onload = () => {
@@ -125,7 +114,7 @@ function fill_leaderboard() {
             const data = JSON.parse(xhr.responseText)["data"];
             var lbHtml = "<tr><th>Rank</th><th>Username</th><th>Points</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                lbHtml += `<tr><td>${i + 1}</td><td>${data["username"]}</td><td>${data["points"]}</td></tr>`;
+                lbHtml += `<tr><td>${i + 1}</td><td>${data[i]["username"]}</td><td>${data[i]["points"]}</td></tr>`;
             }
             document.getElementById("leaderboardTable").innerHTML = lbHtml;
         }
@@ -144,7 +133,7 @@ function fill_task_tables() {
             const data = JSON.parse(xhr.responseText)["data"];
             var tableHtml = "<tr><th>Submission ID</th><th>Task ID</th><th>Submission</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                tableHtml += `<tr><td>${data["submission_id"]}</td><td>${data["task_id"]}</td><td>${data["submission"]}</td></tr>`;
+                tableHtml += `<tr><td>${data[i]["submission_id"]}</td><td>${data[i]["task_id"]}</td><td>${data[i]["submission"]}</td></tr>`;
             }
             document.getElementById("acceptedTasksList").innerHTML = tableHtml;
         }
@@ -160,7 +149,7 @@ function fill_task_tables() {
             const data = JSON.parse(xhr2.responseText)["data"];
             var tableHtml = "<tr><th>Submission ID</th><th>Task ID</th><th>Submission</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                tableHtml += `<tr><td>${data["submission_id"].toString()}</td><td>${data["task_id"].toString()}</td><td>${data["submission"].toString()}</td></tr>`;
+                tableHtml += `<tr><td>${data[i]["submission_id"]}</td><td>${data[i]["task_id"]}</td><td>${data[i]["submission"]}</td></tr>`;
             }
             document.getElementById("submittedTasksList").innerHTML = tableHtml;
         }

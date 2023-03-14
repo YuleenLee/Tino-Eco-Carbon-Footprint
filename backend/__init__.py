@@ -143,11 +143,11 @@ async def submit_task():
         """,
         (task_id, username, submission))).fetchone()
 
-        if task1 is not None or task2 is not None:
+        if not task1 or not task2:
             return {'message': 'Duplucate submission.'}, 404, HEADERS
         
         task_limit = await (await cursor.execute("""
-        SELECT limit
+        SELECT "limit"
         FROM task_info
         WHERE task_id = ?
         """,
