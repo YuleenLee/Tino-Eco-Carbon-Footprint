@@ -11,21 +11,221 @@
   </head>
 
   <body>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/api.js"></script>
     <nav>
-      <ul id="nav">
+     <ul id="nav">
         <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html"> About </a>
-        <a href="tasks.html"> Tasks </a>
-        <a href="submit.html"> Submit </a>
-        <a href="rewards.html"> Rewards </a>
-        <a href="account.html"> <img src="images/account.png"></a>
+        <a href="about.html" class = "linknav"> About </a>
+        <a href="tasks.html" class = "linknav"> Tasks </a>
+        <a href="submit.html" class = "linknav"> Submit </a>
+        <a href="prizes.html" class = "linknav"> Prizes </a>
+        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
+      
       </ul>
     </nav>
-    <h3>Sign in</h3>
-    <input type="text" placeholder="username"> 
-    <input type="text" placeholder="password">
-    <button>enter</button>
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #000;
+}
+body{
+    background-color: #ffffff;
     
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+.shape:first-child{
+    background: linear-gradient(
+        #1845ad,
+        #23a2f6
+    );
+    left: -80px;
+    top: -80px;
+}
+.shape:last-child{
+    background: linear-gradient(
+        to right,
+        #ff512f,
+        #f09819
+    );
+    right: -30px;
+    bottom: -80px;
+}
+.form1{
+    height: 520px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left:65%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+.form1 *{
+    font-family: 'Poppins',sans-serif;
+    color: #000;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.form1 h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+.form2{
+    height: 520px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+/*     float: left; */
+    right: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+.form2 *{
+    font-family: 'Poppins',sans-serif;
+    color: #000;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.form2 h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000000;
+    border-style: solid;
+    border-color: grey;
+}
+::placeholder{
+    color: #000;
+}
+button{
+    margin-top: 50px;
+    width: 100%;
+/*     background-color: #E7EBF0; */
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border-style: solid;
+    border-color: black;
+}
+/* .social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #fff;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+} */
+
+    </style>
+</head>
+<body>
+<!--     <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div> -->
+<div class = "totallogin" style = "display: flex; flex-direction: row;">
+  <div class = "login">
+    
+    <form action="javascript:login(document.getElementById('username').value,document.getElementById('password').value)" class = "form1">
+        <h3>Login </h3>
+        <label for="username">Username</label>
+        <input type="text" placeholder="Name" id="username">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password">
+
+        <button>Log In</button>
+<!--         <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div> -->
+    </form>
+  </div>
+<div class = "signupthing" >
+  <form action="javascript:create_account(document.getElementById('username').value,document.getElementById('password').value)" class = "form2">
+        <h3>Sign up </h3>
+        <label for="username">Username</label>
+        <input type="text" placeholder="Name" id="username">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password">
+
+        <button>Sign Up </button>
+<!--         <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div> -->
+    </form>
+</div>
+</div>
   </body>
 </html>
