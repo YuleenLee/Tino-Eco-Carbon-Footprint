@@ -255,7 +255,7 @@ p{
 
 /* TASKS PAGE  */
 
-.taskinfos{
+.taskinfo{
   text-align: center;
 }
 
@@ -278,14 +278,4 @@ p{
 
 a{
   text-decoration: none;
-}
-
-
-.indent{
-  text-indent: 10%;
-}
-
-
-.taskinfo{
-  text-align: left
 }
