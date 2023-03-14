@@ -25,6 +25,7 @@ function create_account(username, password) {
 
 function login(username, password) {
     const xhr = new XMLHttpRequest();
+    const session_id = Math.floor(Math.random() * 1000000000000);
     xhr.open(
         "POST",
         "http://127.0.0.1:5000/login"
@@ -33,6 +34,7 @@ function login(username, password) {
     const body = JSON.stringify({
         "username": username,
         "password": password,
+        "session_id": session_id,
     });
     xhr.onload = () => {
         if (xhr.readyState == 4) {
@@ -42,6 +44,7 @@ function login(username, password) {
             }
             else if (xhr.status == 201) {
                 sessionStorage.setItem("username", username);
+                sessionStorage.setItem("session_id", session_id);
                 window.location.href = "index.html";
             }
         }
@@ -50,6 +53,33 @@ function login(username, password) {
 }
 
 function submit_task(task_id, submission) {
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+        "POST",
+        "http://127.0.0.1:5000/is_valid_session"
+    );
+    const body = JSON.stringify({
+        "username": sessionStorage.getItem("username"),
+        "session_id": sessionStorage.getItem("session_id"),
+    });
+    xhr.addEventListener("readystatechange", function() {
+        if (this.readyState == this.DONE) {
+            if (xhr.status == 200) {
+                const data = JSON.parse(xhr.responseText);
+                if (!data["is_valid_session"]) {
+                    alert("Please login.");
+                    window.location.href = "account.html";
+                }
+                else {
+                    actuallySubmit(task_id, submission);
+                }
+            }
+        }
+    });
+    xhr.send(body);
+}
+
+function actuallySubmit(task_id, submission) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
@@ -69,6 +99,7 @@ function submit_task(task_id, submission) {
             }
             else if (xhr.status == 201) {
                 alert("Task submitted.");
+                window.location.href = "submit.html";
             }
         }
     }

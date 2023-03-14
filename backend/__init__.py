@@ -1,4 +1,5 @@
 from quart import Quart, Response, request, abort
+from datetime import datetime, timedelta
 import asyncio
 import asqlite
 
@@ -12,6 +13,30 @@ conn = None
 @app.route("/")
 async def main():
     return "Online."
+
+@app.post("/is_valid_session")
+async def is_valid_session():
+    data = await request.get_json(force=True)
+    
+    try:
+        username = data["username"]
+        session_id = int(data["session_id"])
+    except KeyError:
+        abort(400)
+    except TypeError:
+        {"is_valid_session": False}, 200, HEADERS
+
+    async with conn.cursor() as cursor:
+        session = await (await cursor.execute("""
+        SELECT expires
+        FROM session_info
+        WHERE session_id = ? AND username = ?
+        """,
+        (session_id, username))).fetchone()
+
+    if session is None or session[0] < datetime.now():
+        return {"is_valid_session": False}, 200, HEADERS
+    return {"is_valid_session": True}, 200, HEADERS
 
 @app.get("/officers")
 async def officers():
@@ -59,6 +84,7 @@ async def login():
     try:
         username = data["username"]
         password = data["password"]
+        session_id = data["session_id"]
     except KeyError:
         abort(400)
 
@@ -72,6 +98,12 @@ async def login():
 
         if user is None:
             return {'message': 'Invalid login information.'}, 404, HEADERS
+        
+        await cursor.execute("""
+        INSERT INTO session_info
+        VALUES (?, ?, ?)
+        """,
+        (session_id, username, datetime.now() + timedelta(minutes=30)))
 
     return Response(status=201, headers=HEADERS)
 
@@ -227,7 +259,7 @@ async def review_task():
 
 async def run():
     global conn
-    async with asqlite.connect('backend/website.db') as c:
+    async with asqlite.connect('backend/website.db', detect_types=asqlite.PARSE_DECLTYPES | asqlite.PARSE_COLNAMES) as c:
         conn = c
         await app.run_task()
 
