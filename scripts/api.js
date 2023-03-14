@@ -41,6 +41,7 @@ function login(username, password) {
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
+                localStorage.setItem("username", username);
                 window.location.href = "index.html";
             }
         }
@@ -68,6 +69,7 @@ function submit_task(task_id, submission) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
         "task_id": task_id,
+        "username": localStorage.get("username"),
         "submission": submission,
     });
     xhr.onload = () => {

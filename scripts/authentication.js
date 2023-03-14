@@ -1,50 +1,35 @@
-function isLoggedIn() {
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        "http://127.0.0.1:5000/is_logged_in"
-    );
-    xhr.send();
-    xhr.responseType = "json";
-    xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            return xhr.response["is_logged_in"];
-        }
+function isOfficer(data) {
+    const username = localStorage.getItem("username");
+    if (!data["data"].includes(username)) {
+        window.location.href = "index.html";
     }
-    return null;
 }
 
-function isOfficer() {
+function requireOfficer() {
+    requireLogIn();
     const xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
-        "http://127.0.0.1:5000/is_officer"
+        "http://127.0.0.1:5000/officers"
     );
-    xhr.send();
-    xhr.responseType = "json";
-    xhr.onload = () => {
-        if (xhr.readyState == 4) {
+    xhr.addEventListener("readystatechange", function() {
+        if (this.readyState == this.DONE) {
             if (xhr.status == 200) {
-                return xhr.response["is_officer"];
+                const data = JSON.parse(xhr.responseText);
+                isOfficer(data);
             }
             else if (xhr.status == 401) {
                 alert("Please login.");
                 window.location.href = "account.html";
             }
         }
-    }
-    return null;
-}
-
-function requireOfficer() {
-    if (!isOfficer()) {
-        alert("Missing permissions.");
-        window.location.href = "index.html";
-    }
+    });
+    xhr.send();
 }
 
 function requireLogIn() {
-    if (!isLoggedIn()) {
+    const username = localStorage.getItem("username");
+    if (username == null) {
         alert("Please login.");
         window.location.href = "account.html";
     }
