@@ -1,7 +1,6 @@
 from quart import Quart, Response, request, abort
 import asyncio
 import asqlite
-import secrets
 
 HEADERS = {
     'Access-Control-Allow-Origin': '*',
