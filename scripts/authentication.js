@@ -1,5 +1,5 @@
 function isOfficer(data) {
-    const username = localStorage.getItem("username");
+    const username = sessionStorage.getItem("username");
     if (!data["data"].includes(username)) {
         window.location.href = "index.html";
     }
@@ -28,7 +28,7 @@ function requireOfficer() {
 }
 
 function requireLogIn() {
-    const username = localStorage.getItem("username");
+    const username = sessionStorage.getItem("username");
     if (username == null) {
         alert("Please login.");
         window.location.href = "account.html";
