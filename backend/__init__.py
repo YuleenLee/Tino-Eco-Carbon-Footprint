@@ -1,7 +1,6 @@
-from quart import Quart, Response, request, session, abort
+from quart import Quart, Response, request, abort
 import asyncio
 import asqlite
-import secrets
 
 HEADERS = {
     'Access-Control-Allow-Origin': '*',
@@ -10,28 +9,18 @@ HEADERS = {
 app = Quart(__name__)
 conn = None
 
-app.secret_key = secrets.token_hex()
-
 @app.route("/")
 async def main():
     return "Online."
 
-@app.get("/is_logged_in")
-async def is_logged_in():
-    return {"is_logged_in": "username" in session}, 200, HEADERS
-
-@app.get("/is_officer")
-async def is_officer():
-    if "username" not in session:
-        abort(401)
+@app.get("/officers")
+async def officers():
+    officers = []
     async with conn.cursor() as cursor:
-        user = await (await cursor.execute("""
-        SELECT 1
-        FROM user_info
-        WHERE username = ? AND is_officer = 1
-        """,
-        (session["username"]))).fetchone()
-    return {"is_officer": bool(user)}, 200, HEADERS
+        for row in await (await cursor.execute("""SELECT username FROM user_info WHERE is_officer = 1""")).fetchall():
+            officers.append(row[0])
+
+    return {'data': officers}, 200, HEADERS
 
 @app.post("/create_account")
 async def create_account():
@@ -83,14 +72,7 @@ async def login():
 
         if user is None:
             return {'message': 'Invalid login information.'}, 404, HEADERS
-    
-    session["username"] = username
 
-    return Response(status=201, headers=HEADERS)
-
-@app.post("/logout")
-async def logout():
-    session.pop("username", None)
     return Response(status=201, headers=HEADERS)
 
 @app.get("/submitted_tasks")
@@ -141,7 +123,7 @@ async def submit_task():
     data = await request.get_json(force=True)
 
     try:
-        username = session["username"]
+        username = data["username"]
         task_id = int(data["task_id"])
         submission = data["submission"]
     except KeyError:
@@ -161,11 +143,11 @@ async def submit_task():
         """,
         (task_id, username, submission))).fetchone()
 
-        if task1 is not None or task2 is not None:
+        if not task1 or not task2:
             return {'message': 'Duplucate submission.'}, 404, HEADERS
         
         task_limit = await (await cursor.execute("""
-        SELECT limit
+        SELECT "limit"
         FROM task_info
         WHERE task_id = ?
         """,

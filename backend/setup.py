@@ -26,7 +26,7 @@ async def main():
                 "username" TEXT,
                 "submission" TEXT,
                 FOREIGN KEY("task_id") REFERENCES "task_info"("task_id") ON DELETE CASCADE,
-                FOREIGN KEY("username") REFERENCES "users"("username") ON DELETE CASCADE
+                FOREIGN KEY("username") REFERENCES "user_info"("username") ON DELETE CASCADE
             )
             """)
             await cursor.execute("""
@@ -36,7 +36,7 @@ async def main():
                 "username" TEXT,
                 "submission" TEXT,
                 FOREIGN KEY("task_id") REFERENCES "task_info"("task_id") ON DELETE CASCADE,
-                FOREIGN KEY("username") REFERENCES "users"("username") ON DELETE CASCADE
+                FOREIGN KEY("username") REFERENCES "user_info"("username") ON DELETE CASCADE
             )
             """)
 
