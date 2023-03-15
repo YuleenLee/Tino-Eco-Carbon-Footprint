@@ -25,7 +25,6 @@ function create_account(username, password) {
 
 function login(username, password) {
     const xhr = new XMLHttpRequest();
-    const session_id = Math.floor(Math.random() * 1000000000000);
     xhr.open(
         "POST",
         "http://127.0.0.1:5000/login"
@@ -34,17 +33,16 @@ function login(username, password) {
     const body = JSON.stringify({
         "username": username,
         "password": password,
-        "session_id": session_id,
     });
     xhr.onload = () => {
         if (xhr.readyState == 4) {
+            const data = JSON.parse(xhr.responseText);
             if (xhr.status == 404) {
-                const data = JSON.parse(xhr.responseText);
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
                 sessionStorage.setItem("username", username);
-                sessionStorage.setItem("session_id", session_id);
+                sessionStorage.setItem("session_id", data["session_id"]);
                 window.location.href = "index.html";
             }
         }

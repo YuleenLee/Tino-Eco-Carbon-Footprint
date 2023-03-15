@@ -41,7 +41,7 @@ async def main():
             """)
             await cursor.execute("""
             CREATE TABLE "session_info" (
-                "session_id" INTEGER,
+                "session_id" TEXT,
                 "username" TEXT,
                 "expires" TIMESTAMP,
                 FOREIGN KEY("username") REFERENCES "user_info"("username") ON DELETE CASCADE

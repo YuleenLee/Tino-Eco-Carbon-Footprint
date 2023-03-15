@@ -1,5 +1,6 @@
 from quart import Quart, Response, request, abort
 from datetime import datetime, timedelta
+import hashlib
 import asyncio
 import asqlite
 
@@ -20,7 +21,7 @@ async def is_valid_session():
     
     try:
         username = data["username"]
-        session_id = int(data["session_id"])
+        session_id = data["session_id"]
     except KeyError:
         abort(400)
     except TypeError:
@@ -84,7 +85,6 @@ async def login():
     try:
         username = data["username"]
         password = data["password"]
-        session_id = data["session_id"]
     except KeyError:
         abort(400)
 
@@ -99,13 +99,15 @@ async def login():
         if user is None:
             return {'message': 'Invalid login information.'}, 404, HEADERS
         
+        now = datetime.now()
+        session_id = hashlib.sha256(f"{username}{password}{now}".encode()).hexdigest()
         await cursor.execute("""
         INSERT INTO session_info
         VALUES (?, ?, ?)
         """,
-        (session_id, username, datetime.now() + timedelta(minutes=30)))
+        (session_id, username, now + timedelta(days=7)))
 
-    return Response(status=201, headers=HEADERS)
+    return {"session_id": session_id}, 201, HEADERS
 
 @app.get("/submitted_tasks")
 async def submitted_tasks():
