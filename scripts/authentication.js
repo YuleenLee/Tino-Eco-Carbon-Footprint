@@ -3,6 +3,9 @@ function isOfficer(data) {
     if (!data["data"].includes(username)) {
         window.location.href = "index.html";
     }
+    else {
+        document.getElementById("contentdiv").hidden = false;
+    }
 }
 
 function requireOfficer() {
@@ -24,6 +27,9 @@ function requireOfficer() {
             }
         }
     });
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.send();
 }
 
@@ -45,8 +51,14 @@ function requireLogIn() {
                     alert("Please login.");
                     window.location.href = "account.html";
                 }
+                else {
+                    document.getElementById("contentdiv").hidden = false;
+                }
             }
         }
     });
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.send(body);
 }

@@ -14,32 +14,34 @@
     <script src="scripts/script.js"></script>
     <script src="scripts/authentication.js"></script>
     <script src="scripts/api.js"></script>
+    <div hidden="" id="contentdiv">
+      <nav>
+        <ul id="nav">
+          <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
+          <a href="about.html" class = "linknav"> About </a>
+          <a href="tasks.html" class = "linknav"> Tasks </a>
+          <a href="leaderboard.html" class="linknav"> Leaderboard </a>
+          <a href="submit.html" class = "linknav"> Submit </a>
+          <a href="prizes.html" class = "linknav"> Prizes </a>
+          <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
+        
+        </ul>
+      </nav>
+      <form action="javascript:review_task(document.getElementById('acceptTaskId').value, true, document.getElementById('acceptTaskPoints').value)">
+        <input id='acceptTaskId' type='number' placeholder='submission id'>
+        <input id='acceptTaskPoints' type='number' placeholder='points'>
+        <button>Accept Task</button>
+      </form>
+      <form action="javascript:review_task(document.getElementById('rejectTaskId').value, false, 0)">
+        <input id='rejectTaskId' type='number' placeholder='submission id'>
+        <button>Reject Task</button>
+      </form>
+      <h3>Submitted Tasks</h3>
+      <table id="submittedTasksList"></table>
+      <h3>Accepted Tasks</h3>
+      <table id="acceptedTasksList"></table>
+      <script>fill_task_tables()</script>
+    </div>
     <script>requireOfficer()</script>
-   <nav>
-      <ul id="nav">
-        <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html" class = "linknav"> About </a>
-        <a href="tasks.html" class = "linknav"> Tasks </a>
-        <a href="leaderboard.html" class="linknav"> Leaderboard </a>
-        <a href="submit.html" class = "linknav"> Submit </a>
-        <a href="prizes.html" class = "linknav"> Prizes </a>
-        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
-      
-      </ul>
-    </nav>
-    <form action="javascript:review_task(document.getElementById('acceptTaskId').value, true, document.getElementById('acceptTaskPoints').value)">
-      <input id='acceptTaskId' type='number' placeholder='submission id'>
-      <input id='acceptTaskPoints' type='number' placeholder='points'>
-      <button>Accept Task</button>
-    </form>
-    <form action="javascript:review_task(document.getElementById('rejectTaskId').value, false, 0)">
-      <input id='rejectTaskId' type='number' placeholder='submission id'>
-      <button>Reject Task</button>
-    </form>
-    <h3>Submitted Tasks</h3>
-    <table id="submittedTasksList"></table>
-    <h3>Accepted Tasks</h3>
-    <table id="acceptedTasksList"></table>
-    <script>fill_task_tables()</script>
   </body>
 </html>

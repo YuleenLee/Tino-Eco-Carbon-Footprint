@@ -20,6 +20,9 @@ function create_account(username, password) {
             }
         }
     }
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.send(body);
 }
 
@@ -47,6 +50,9 @@ function login(username, password) {
             }
         }
     }
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.send(body);
 }
 
@@ -74,6 +80,9 @@ function submit_task(task_id, submission) {
             }
         }
     });
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.send(body);
 }
 
@@ -101,6 +110,9 @@ function actuallySubmit(task_id, submission) {
             }
         }
     }
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.send(body);
 }
 
@@ -128,6 +140,9 @@ function review_task(submission_id, accepted, points) {
             }
         }
     }
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.send(body);
 }
 
@@ -137,7 +152,9 @@ function fill_leaderboard() {
         "GET",
         "http://127.0.0.1:5000/leaderboard",
     );
-    xhr.send();
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const data = JSON.parse(xhr.responseText)["data"];
@@ -148,6 +165,7 @@ function fill_leaderboard() {
             document.getElementById("leaderboardTable").innerHTML = lbHtml;
         }
     }
+    xhr.send();
 }
 
 function fill_task_tables() {
@@ -156,7 +174,6 @@ function fill_task_tables() {
         "GET",
         "http://127.0.0.1:5000/accepted_tasks",
     );
-    xhr.send();
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const data = JSON.parse(xhr.responseText)["data"];
@@ -172,7 +189,6 @@ function fill_task_tables() {
         "GET",
         "http://127.0.0.1:5000/submitted_tasks",
     );
-    xhr2.send();
     xhr2.onload = () => {
         if (xhr2.readyState == 4 && xhr2.status == 200) {
             const data = JSON.parse(xhr2.responseText)["data"];
@@ -183,4 +199,12 @@ function fill_task_tables() {
             document.getElementById("submittedTasksList").innerHTML = tableHtml;
         }
     }
+    xhr.onerror = function(e){
+        window.location.href = "oops.html";
+    };
+    xhr2.onerror = function(e){
+        window.location.href = "oops.html";
+    };
+    xhr.send();
+    xhr2.send();
 }
