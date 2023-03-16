@@ -143,6 +143,7 @@ async def leaderboard():
     async with conn.cursor() as cursor:
         for row in await (await cursor.execute("""
         SELECT username, points FROM user_info
+        WHERE points > 0
         ORDER BY points DESC
         """)).fetchall():
             users.append({
