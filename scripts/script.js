@@ -1,10 +1,7 @@
 window.onload = function() {
   let searchForm = document.getElementById('search-form');
-  console.log(searchForm);
   let searchResultList = document.querySelectorAll('.result-items');
   let result = document.getElementById('search-results');
-  console.log(searchResultList);
-  console.log(result);
   let searchValue = result.getElementsByTagName('h3');
 
   searchForm.addEventListener("keyup", function() {
