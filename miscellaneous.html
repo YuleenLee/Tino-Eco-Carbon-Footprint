@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Footprint Competition</title>
-    <link href="style.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Competition</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
+</head>
 
-  <body>
-    <script src="scripts/script.js"></script>
-    <nav>
-      <ul id="nav">
-        <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html" class = "linknav"> About </a>
-        <a href="tasks.html" class = "linknav"> Tasks </a>
-        <a href="leaderboard.html" class="linknav"> Leaderboard </a>
-        <a href="submit.html" class = "linknav"> Submit </a>
-        <a href="prizes.html" class = "linknav"> Prizes </a>
-        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
-      
-      </ul>
-    </nav>
-      <div class="taskinfos">
+<body>
+  <script src="scripts/script.js"></script>
+  <nav>
+    <ul id="nav">
+      <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
+      <a href="about.html" class="linknav"> About </a>
+      <a href="tasks.html" class="linknav"> Tasks </a>
+      <a href="leaderboard.html" class="linknav"> Leaderboard </a>
+      <a href="submit.html" class="linknav"> Submit </a>
+      <a href="prizes.html" class="linknav"> Prizes </a>
+      <a href="account.html" class="linknav"> <img src="images/account.png" class="profileimg"></a>
+
+    </ul>
+  </nav>
+  <div class="taskinfos">
     <h1>All Tasks</h1>
 
     <h4 style="color: #be6060">If many applications are received, we will be able to bring more graded categories such
@@ -43,11 +43,277 @@
     <button class="btabs"><a href="food.html"> Food </a></button>
     <button class="btabs"><a href="miscellaneous.html"> Miscellaneous </a></button>
   </ul>
+  <div class="search-results" id="search-results">
+    <div class="result-items">
+      <div class="left">
+        <h3>24. Miscellaneous</h3>
+        <p>Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Join our publications team and write a blog post (160pts)</p>
+        <div class="taskinfo24" id="taskinfo24" style="display: none">
+          <p id="description24"> a. To join, fill out this form <a href="https://forms.gle/kL1ygiu1s9w7kemTA">
+              https://forms.gle/kL1ygiu1s9w7kemTA</a> and at the bottom select that you would like to join “blog
+            publications”</p>
+          <p>b. Write a blog plog regarding one of the following topics (120 pts)</p>
+          <p class="indent">i. Invention integrated with renewable energy</p>
+          <p class="indent">ii. Recent rules and regulations by California to reduce carbon footprint </p>
+          <p class="indent">iii. Can do other topics but have to email us first</p>
+          <p>c. Make an instagram snippet (40pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails24()">Details</button>
+      </div>
+    </div>
 
-  <div class="search-form">
-    <i class="bx bx-search-alt-2"></i>
-    <input type="text" id="search-form" placeholder="Search here...">
+    <div class="result-items">
+      <div class="left">
+        <h3>25. Miscellaneous</h3>
+        <p>Unlimited, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Design a comic strip invovling 3 panels. The story should be about something you learned from the
+          competition. (30pts)</p>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>26. Miscellaneous</h3>
+        <p>One time only, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Repost our Carbon Footprint Competition post on your story (15 pts)</p>
+        <div class="taskinfo26" id="taskinfo26" style="display: none">
+          <p id="description26"> a. Instagram or Facebook</p>
+          <p>b. Take a picture of proof and send it to us</p>
+          <p>c. Account must be public</p>
+          <p>d. Once only</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails26()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>27. Miscellaneous</h3>
+        <p>Unlimited, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Repost our Carbon Footprint Competition post on Facebook or Instagram (20 pts for the first 5 days, 5 pts for
+          every 2 weeks after)</p>
+        <div class="taskinfo27" id="taskinfo27" style="display: none">
+          <p id="description27"> a. Take a picture of proof and send it to us</p>
+          <p>b. Account must be public</p>
+          <p>c. One account only</p>
+          <p>d. Keep it up for at least 5 days, after the first 5 days extra points will be rewarded</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails27()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>28. Miscellaneous</h3>
+        <p>Unlimited, Hands-on, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Make a compost bin (40 pts, extra 10 every additional 2 week)</p>
+        <div class="taskinfo28" id="taskinfo28" style="display: none">
+          <p id="description28">a. Create a plan for your compost bin “project”. Think about the type of compost bin,
+            what types of food to use, wildlife concerns. *Research HIGHLY recommended </p>
+          <p>b. Learn about Aerobic vs Anaerobic composting (2 similarities/2 differences)</p>
+          <p>c. Maintain the compost bin for a week</p>
+          <p>d. Reflect on how the week went or any takeaways</p>
+          <p>e. Take pictures of the process and results, send them to us</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails28()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>29. Miscellaneous</h3>
+        <p>One time only, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Calculate the amount of electricity in your household (35 pts)</p>
+        <div class="taskinfo29" id="taskinfo29" style="display: none">
+          <p id="description29"> a. Look over your monthly electricity bill and determine the usage of electricity in
+            your household (15 points).
+          </p>
+          <p>b. Figure out ways to reduce the usage (20pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails29()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>30. Miscellaneous</h3>
+        <p>Multiple times, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Take one of these quizzes to find out your carbon footprint (20 pts)</p>
+        <div class="taskinfo30" id="taskinfo30" style="display: none">
+          <p id="description30"> a. <a href="https://www.carbonfootprint.com/calculator.aspx"> Carbon footprint
+              calculator </a></p>
+          <p class="indent">i. Take a picture of your results</p>
+          <p class="indent">ii. Compare your consumption to the US average. Is it higher, lower, or the same?</p>
+          <p class="indent">iii. Any takeaways or surprises about your consumption?</p>
+          <p>b. <a href="https://www.conservation.org/carbon-footprint-calculator#/"> Carbon Footprint Calculator</a>
+          </p>
+          <p class="indent">i. Take a picture of your results</p>
+          <p class="indent">ii. Compare your consumption to the US average. Is it higher, lower, or the same?</p>
+          <p class="indent">iii. Any takeaways or surprises about your consumption?</p>
+          <p>c. <a href="https://coolcalifornia.arb.ca.gov/calculator-households-individuals"> Calculator for Households
+              & Individuals | Cool California</a> </p>
+          <p class="indent">i. Take a picture of your results</p>
+          <p class="indent">ii. Compare your consumption to the US average. Is it higher, lower, or the same?</p>
+          <p class="indent">iii. Any takeaways or surprises about your consumption?</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails30()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>31. Miscellaneous</h3>
+        <p>One time only, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Create a checklist with at least 5 actions you can take to reduce your carbon footprint (25 pts)</p>
+        <div class="taskinfo31" id="taskinfo31" style="display: none">
+          <p id="description31"> a. List (5 pts)</p>
+          <p>b. What difficulties will there be in starting each action? (10 pts)</p>
+          <p>c. What benefits will each action bring? (10 pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails31()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>32. Miscellaneous</h3>
+        <p>One time only, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Feedback (15 pts)</p>
+        <div class="taskinfo32" id="taskinfo32" style="display: none">
+          <p id="description32">a. <a href="https://forms.gle/nFiC7CHBHAwwJiLx5">https://forms.gle/nFiC7CHBHAwwJiLx5</a>
+          </p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails32()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>33. Miscellaneous</h3>
+        <p>Unlimited, Research, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Write a summary about a piece of recent environmental news (15 pts)</p>
+        <div class="taskinfo33" id="taskinfo33" style="display: none">
+          <p id="description33"> a. Link to the article(s)</p>
+          <p>b. A strong paragraph (5-8 sentences)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails33()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>34. Miscellaneous</h3>
+        <p>One time only, Research, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Research about deforestation and the effect it has on the environment (15 pts)</p>
+        <div class="taskinfo34" id="taskinfo34" style="display: none">
+          <p id="description34"> a. Define carbon sinks, how does this relate to forests? (5 pts)</p>
+          <p>b. Research about the carbon cycle in trees (10 pts)</p>
+          <p class="indent">i. list out the pathway</p>
+          <p class="indent">ii. Why might deforestation hurt the environment (think about the carbon cycle)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails34()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>35. Miscellaneous</h3>
+        <p>Unlimited, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Explore this website and learn how you can recycle your things (10 pts)</p>
+        <div class="taskinfo35" id="taskinfo35" style="display: none">
+          <p id="description35"> a. <a href="https://www.recyclestuff.org/">Recycle Stuff: How to Recycle Anything in
+              Santa Clara and San Mateo Counties </a></p>
+          <p>b. Search up 3 materials and note down instructions to recycle them (where, when, how)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails35()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>36. Miscellaneous</h3>
+        <p>Unlimited, Hands-on, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Upcycle your items! (depends on effort shown, average 50 pts)</p>
+        <div class="taskinfo36" id="taskinfo36" style="display: none">
+          <p id="description36">a. Gather unwanted items in your house and have an arts and craft session (make sure to
+            ask around if it is truly unwanted). <br>Think about what you can make with those items and make it!</p>
+          <p>b. Take a picture of your item(s) and send it to us</p>
+          <p>c. Add it to our gallery (10pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails36()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>37. Miscellaneous</h3>
+        <p>Unlimited, Hands-on, Miscellan</p>
+      </div>
+      <div class="right">
+        <p>Volunteer with Tino Eco to clean up Rainbow Park (70 pts per hour)</p>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>38. Miscellaneous</h3>
+        <p>Unlimited, Hands-on, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Volunteer with Local Organizations on Enviornmental Topics (50 pts per hour)</p>
+        <div class="taskinfo38" id="taskinfo38" style="display: none">
+          <p id="description38">a. Volunteering that requires you to be hands on, for example: park cleanups, tree
+            planting</p>
+          <p class="indent">i. Grassroot Ecology, Keep Coyote Creek Beautiful, Our City Forest</p>
+          <p class="indent">ii. State where, what, when, and who you are volunteering for </p>
+          <p>b. Get a volunteering certificate from the organization and send a picture of it</p>
+          <p>c. Send a picture of you at the volunteering location</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails38()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>39. Miscellaneous</h3>
+        <p>One time only, Research, Miscellaneous</p>
+      </div>
+      <div class="right">
+        <p>Research how greenhouse gas emissions impact the world’s oceans. (15 pts)</p>
+        <div class="taskinfo39" id="taskinfo39" style="display: none">
+          <p id="description39">a. Write one paragraph 5-8 sentences on Ocean Acidification</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails39()">Details</button>
+      </div>
+    </div>
   </div>
+</body>
 
-  </body>
 </html>

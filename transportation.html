@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Footprint Competition</title>
-    <link href="style.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Competition</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
+</head>
 
-  <body>
-    <script src="scripts/script.js"></script>
-   <nav>
-      <ul id="nav">
-        <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html" class = "linknav"> About </a>
-        <a href="tasks.html" class = "linknav"> Tasks </a>
-        <a href="leaderboard.html" class="linknav"> Leaderboard </a>
-        <a href="submit.html" class = "linknav"> Submit </a>
-        <a href="prizes.html" class = "linknav"> Prizes </a>
-        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
-      
-      </ul>
-    </nav>
-      <div class="taskinfos">
+<body>
+  <script src="scripts/script.js"></script>
+  <nav>
+    <ul id="nav">
+      <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
+      <a href="about.html" class="linknav"> About </a>
+      <a href="tasks.html" class="linknav"> Tasks </a>
+      <a href="leaderboard.html" class="linknav"> Leaderboard </a>
+      <a href="submit.html" class="linknav"> Submit </a>
+      <a href="prizes.html" class="linknav"> Prizes </a>
+      <a href="account.html" class="linknav"> <img src="images/account.png" class="profileimg"></a>
+
+    </ul>
+  </nav>
+  <div class="taskinfos">
     <h1>All Tasks</h1>
 
     <h4 style="color: #be6060">If many applications are received, we will be able to bring more graded categories such
@@ -44,10 +44,189 @@
     <button class="btabs"><a href="miscellaneous.html"> Miscellaneous </a></button>
   </ul>
 
-  <div class="search-form">
-    <i class="bx bx-search-alt-2"></i>
-    <input type="text" id="search-form" placeholder="Search here...">
-  </div>
+  <div class="search-results" id="search-results">
+    <div class="result-items">
+      <div class="left">
+        <h3>3. Transportation</h3>
+        <p>Multiple times, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Gain an understanding of the public transport system near you (85pts)</p>
+        <div class="taskinfo3" id="taskinfo3" style="display: none">
+          <p style="display: none;" id="description3"> a. Explore the websites (5 pts each website)
+          <p> i. Pull out 3interesting facts </p>
+          <p class="indent"> b. Map out routes you would use for each transportation system (30 pts each system)</p>
+          <p class="indent"> c. Calculate the cost between using public transport and your usual way of transportation
+            (50 pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails3()">Details</button>
+      </div>
+    </div>
 
-  </body>
+    <div class="result-items">
+      <div class="left">
+        <h3>4. Transportation</h3>
+        <p>One time only, Research, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Dive deeper into the effects of transportation (15pts)</p>
+        <div class="taskinfo4" id="taskinfo4" style="display: none">
+          <p id="description4"> a. Which kinds of transportation contribute the most to your carbon
+            footprint? The least? Why? (5pts) </p>
+          </p> b. List some ways you can limit your daily/weekly carbon footprint
+          through transportation (10pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails4()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>5. Transportation</h3>
+        <p>Multiple Times, Research, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Research specifically about one kind of transportation (ex: cars, trains, flights) (40pts)</p>
+        <div class="taskinfo5" id="taskinfo5" style="display: none">
+          <p id="description5"> a. Learn about the effect it has on carbon footprints, the
+            environment (10pts) </p>
+          <p> b. Write two paragraphs (10-16 sentences) reflecting on what you have learned, any
+            takeaways, etc (30 pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails5()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>6. Transportation</h3>
+        <p>One time only, Research, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Conduct research about what lawmakers have done to respond to GHG emissions from transportation (25pts)</p>
+        <div class="taskinfo6" id="taskinfo6" style="display: none">
+          <p id="description6"> a. What is the Renewable Fuel Standard program? What is the
+            program's goal and plan to reduce greenhouse gas emissions? (10pts)</p>
+          <p> b. What has California done? (Hint:
+            ARFVTP, the School Bus Replacement Program) (15pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails6()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>7. Transportation</h3>
+        <p>Videos, Multiple times, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Watch this video and answer these questions (30pts)</p>
+        <div class="taskinfo7" id="taskinfo7" style="display: none">
+          <p id="description7"> a. <a
+              href="https://www.ted.com/talks/wayne_ting_a_carbon_free_future_starts_with_driving_less">A carbon-free
+              future starts with driving less</a> (15pts)
+          <p class="indent"> i. <a
+              href="https://docs.google.com/document/d/1wGT_j3cNjBWY-sibeIvzhYbr5peBmZhJIGc8eRyrGAI/edit"> Questions</a>
+          <p class="indent"> <a href="https://www.ted.com/talks/ted_ed_what_s_the_best_fuel_for_your_car">What's the
+              best fuel for
+              your car</a> (15pts)
+          <p class="indent"> i. <a
+              href="https://docs.google.com/document/d/15SMnbE-NBSnJgQ7gAxYAPcr0gzWGAaiN2lkQST8sNhU/edit?usp=sharing">Questions
+            </a></p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails7()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>8. Transportation</h3>
+        <p>Article, Multiple times, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Read this article and answer these questions (15pts)</p>
+        <div class="taskinfo8" id="taskinfo8" style="display: none">
+          <p id="description8"> a. <a
+              href="https://www.transportation.gov/priorities/climate-and-sustainability/climate-action"> Transportation
+              climate action </a> (15pts)
+          <p class="indent"> i. <a
+              href="https://docs.google.com/document/d/1E63dxRC3rVG5c5ocC5AQW-LSPRK0lI1n8m20QAr8aqU/edit?usp=sharing">
+              Questions</a></p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails8()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>9. Transportation</h3>
+        <p> One time only, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Try to reduce your own digital footprint by biking/walking</p>
+        <div class="taskinfo9" id="taskinfo9" style="display: none">
+          <p id="description9">a. 1 mile = 5 points
+          <p> b. Log your data into Strava, take a
+            screenshot and send it to us. </p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails9()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>10. Transportation</h3>
+        <p>Unlimited, Hands-on, Transportation</p>
+      </div>
+      <div class="right">
+        <div class="taskinfo10" id="taskinfo10" style="display: none">
+          <p>Compare and Contrast the public transportation system here to other countries/counties (30pts)</p>
+          <p id="description10"> a. Look at one of the transportation systems nearby you
+          <p> b.
+            Compare it to other countries/counties with successful transportation systems (20pts)
+          <p class="indent"> i. Compare and
+            contrast 5 different factors
+          <p> c. Propose a way to improve our transportation system (15pts)
+          <p class="indent"> i. 5-8
+            sentences</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails10()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>11. Transportation</h3>
+        <p>Multiple times, Research, Transportation</p>
+      </div>
+      <div class="right">
+        <p>Research how electric cars work (30pts)</p>
+        <div class="taskinfo11" id="taskinfo11" style="display: none">
+          <p id="description11">a. Write 2 paragraphs (10-16 sentences) on your findings</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails11()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>12. Transportation</h3>
+        <p>One time only, Research, Transportation</p>
+      </div>
+      <div class="right">
+        <p>What sort of vehicle does your family have? (20pts)</p>
+        <div class="taskinfo12" id="taskinfo12" style="display: none">
+          <p id="description12">a. What is its source of energy?
+          <p>b. Is this source of energy
+            renewable or nonrenewable?
+          <p> c. How often does your family use this vehicle?
+          <p> d. What can your family
+            do to avoid fuel emissions? </p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails12()">Details</button>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

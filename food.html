@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Footprint Competition</title>
-    <link href="style.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
-  </head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Competition</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
+</head>
 
 <body>
   <script src="scripts/script.js"></script>
   <nav>
-      <ul id="nav">
-        <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html" class = "linknav"> About </a>
-        <a href="tasks.html" class = "linknav"> Tasks </a>
-        <a href="leaderboard.html" class="linknav"> Leaderboard </a>
-        <a href="submit.html" class = "linknav"> Submit </a>
-        <a href="prizes.html" class = "linknav"> Prizes </a>
-        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
-      
-      </ul>
-    </nav>
+    <ul id="nav">
+      <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
+      <a href="about.html" class="linknav"> About </a>
+      <a href="tasks.html" class="linknav"> Tasks </a>
+      <a href="leaderboard.html" class="linknav"> Leaderboard </a>
+      <a href="submit.html" class="linknav"> Submit </a>
+      <a href="prizes.html" class="linknav"> Prizes </a>
+      <a href="account.html" class="linknav"> <img src="images/account.png" class="profileimg"></a>
+
+    </ul>
+  </nav>
   <div class="taskinfos">
     <h1>All Tasks</h1>
 
@@ -42,11 +43,181 @@
     <button class="btabs"><a href="food.html"> Food </a></button>
     <button class="btabs"><a href="miscellaneous.html"> Miscellaneous </a></button>
   </ul>
+  <div class="search-results" id="search-results">
+    <div class="result-items">
+      <div class="left">
+        <h3>41. Food</h3>
+        <p>Multiple times, Research, Food</p>
+      </div>
+      <div class="right">
+        <p>Research emissions given off by different types of meat (22 pts possible)</p>
+        <div class="taskinfo1" id="taskinfo1" style="display: none">
+          <p id="description41">a. What kind of food gives off the most greenhouse gasses? (2 whys) (5 pts)</p>
+          <p>b. Which kind of food gives off the least? (2 whys) (5 pts) </p>
+          <p>c. Compare the two (5 pts)</p>
+          <p class="indent">i. Compare and contrast with at least 3 factors</p>
+          <p class="indent">ii. Ex: How many portions can they feed per ___ emission</p>
+          <p>Rank at least 5 categories of food based on their greenhouse gas emissions per portion, from least to
+            greatest. (7 pts +1pt per extra</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails41()">Details</button>
+      </div>
+    </div>
 
-  <div class="search-form">
-    <i class="bx bx-search-alt-2"></i>
-    <input type="text" id="search-form" placeholder="Search here...">
+    <div class="result-items">
+      <div class="left">
+        <h3>42. Food</h3>
+        <p>Multiple times, Research, Food</p>
+      </div>
+      <div class="right">
+        <p>Research about food labels (halal, vegan, vegetarian, non-GMO, organic) (10 pts each)</p>
+        <div class="taskinfo42" id="taskinfo42" style="display: none">
+          <p id="description42">a. Find the stickers/labels used to distinguish these foods</p>
+          <p>b. What does the label mean?</p>
+          <p>c. Are they environmentally friendly? Why and how?</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails42()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>43. Food</h3>
+        <p>One time only, Research, Food</p>
+      </div>
+      <div class="right">
+        <p>What is vertical farming? (20 pts)</p>
+        <div class="taskinfo43" id="taskinfo43" style="display: none">
+          <p id="description43"> a. Find at least 2 sources about vertical farming and put links in the submit page</p>
+          <p>b. What is vertical farming? How does it work? Write a summary of what you learned in 5-8 sentences. (15
+            pts)</p>
+          <p>c. Compare 4 pros and cons (5 pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails43()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>44. Food</h3>
+        <p>One time only, Research, Food</p>
+      </div>
+      <div class="right">
+        <p>What is monoculture? (35 pts)</p>
+        <div class="taskinfo44" id="taskinfo44" style="display: none">
+          <p id="description44"> a. What is monoculture? (5-8 sentences) (15 pts)</p>
+          <p> b. Write a paragraph about the following prompt: Do you think monoculture is sustainable? (5-8 sentences)
+            (15 pts)</p>
+          <p>c. Compare 4 pros and cons (5 pts)</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails44()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>45. Food</h3>
+        <p>One time only, Research, Food</p>
+      </div>
+      <div class="right">
+        <p>How do farms manage pests? (20 pts)</p>
+        <div class="taskinfo45" id="taskinfo45" style="display: none">
+          <p id="description45"> a. Research the pros and cons of pesticide usage (5 pts)</p>
+          <p class="indent">i. At least 3 pros and cons</p>
+          <p>b. How do they contribute to greenhouse gas emissions? (15 pts)</p>
+          <p class="indent"> i. 5-8 sentences </p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails45()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>46. Food</h3>
+        <p>One time only, Research, Food</p>
+      </div>
+      <div class="right">
+        <p>Research crop rotation (20 pts)</p>
+        <div class="taskinfo46" id="taskinfo46" style="display: none">
+          <p id="description46"> a. Compare 4 pros and cons of crop rotation (5 pts)</p>
+          <p>b. How does crop rotation work? How is it more efficient? (15 pts)
+          <p class="indent">i. 5-8 sentences</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails46()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>47. Food</h3>
+        <p>One time only, Food</p>
+      </div>
+      <div class="right">
+        <p>Keep track of what you eat for a week (40 pts)</p>
+        <div class="taskinfo47" id="taskinfo47" style="display: none">
+          <p id="description47"> a. List of food eaten in a week (20 pts)</p>
+          <p>b. Which foods (top 3) you eat produce the most emissions? (5 pts)</p>
+          <p>c. Is the food you eat local? If not, where does it come from? How might that impact the environment? (15
+            pts) </p>
+          <p class="indent">i. 5-8 sentences</p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails47()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>48. Food</h3>
+        <p>Videos, Multiple times, Food</p>
+      </div>
+      <div class="right">
+        <p>Watch one of the videos and fill out the worksheet (30 pts)</p>
+        <div class="taskinfo48" id="taskinfo48" style="display: none">
+          <p id="description48"> a. <a href="https://youtu.be/jRQEi-C5GDg">Link </a> to the Video (15 pts)</p>
+          <p class="indent">i. <a
+              href="https://docs.google.com/document/d/1Xo9zw6J22OX392dNQ8dD1x_1IbG5F4QbRofkMymmVc4/edit?usp=sharing">Link
+            </a> to Worksheet</p>
+          <p>b. <a href="https://youtu.be/7TmcXYp8xu4"> Are GMOs Good or Bad? Genetic Engineering & Our Food></a>
+            (20pts)</p>
+          <p class="indent"> i. <a
+              href="https://docs.google.com/document/d/1yLMbA5bdLY9M-morUGAUuSBUS57bBGCHMW_jl-WRnSY/edit#"> GMOs (Food
+              Video)</a></p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails48()">Details</button>
+      </div>
+    </div>
+
+    <div class="result-items">
+      <div class="left">
+        <h3>49. Food</h3>
+        <p>Articles, Multiple times, Food</p>
+      </div>
+      <div class="right">
+        <p>Read one of the articles and fill out the worksheet</p>
+        <div class="taskinfo49" id="taskinfo49" style="display: none">
+          <p id="description49"> a. <a
+              href="https://ourworldindata.org/environmental-impacts-of-food?insight=food-plays-a-large-role-in-many-environmental-impacts#key-insights-on-the-environmental-impacts-of-food">https://ourworldindata.org/environmental-impacts-of-food?insight=food-plays-a-large-role-in-many-environmental-impacts#key-insights-on-the-environmental-impacts-of-food</a>
+            (20 pts)</p>
+          <p class="indent">i. <a
+              href="https://docs.google.com/document/d/1hO7wDKeufzKC9FF8DcrzolD2Cv_dh8ZKHn-SuWJrzWA/edit?usp=sharing">
+              Statics (Foot Article) </a></p>
+          <p>b. <a href="https://foodprint.org/issues/the-water-footprint-of-food/">
+              https://foodprint.org/issues/the-water-footprint-of-food/</a> (20 pts)</p>
+          <p class="indent"> i. <a
+              href="https://docs.google.com/document/d/1dk3mIAe_Zj7qocdqhgjg-3PKDElTQ47wuqr9clQ5VCU/edit?usp=sharing">
+              Water Footprint (Food Article)</a></p>
+          <p>c. Link to article: <a
+              href="https://www.unep.org/news-and-stories/story/methane-emissions-are-driving-climate-change-heres-how-reduce-them">
+              https://www.unep.org/news-and-stories/story/methane-emissions-are-driving-climate-change-heres-how-reduce-them</a>(15
+            pts)</p>
+          <p class="indent">i. Fill out this worksheet: <a
+              href="https://docs.google.com/document/d/1kqEGecEUPEfh_AH8zSBPUEsKPuf5kdGMMIqLEDXghIg/edit?usp=sharing">https://docs.google.com/document/d/1kqEGecEUPEfh_AH8zSBPUEsKPuf5kdGMMIqLEDXghIg/edit?usp=sharing</a>
+          </p>
+        </div>
+        <button class="button" role="button" onclick="displayDetails49()">Details</button>
+      </div>
+    </div>
   </div>
+</body>
 
-  </body>
 </html>

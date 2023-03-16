@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Footprint Competition</title>
-    <link href="style.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
-  </head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Competition</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
+</head>
 
 <body>
   <script src="scripts/script.js"></script>
   <nav>
-      <ul id="nav">
-        <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html" class = "linknav"> About </a>
-        <a href="tasks.html" class = "linknav"> Tasks </a>
-        <a href="leaderboard.html" class="linknav"> Leaderboard </a>
-        <a href="submit.html" class = "linknav"> Submit </a>
-        <a href="prizes.html" class = "linknav"> Prizes </a>
-        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
-      
-      </ul>
-    </nav>
+    <ul id="nav">
+      <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
+      <a href="about.html" class="linknav"> About </a>
+      <a href="tasks.html" class="linknav"> Tasks </a>
+      <a href="leaderboard.html" class="linknav"> Leaderboard </a>
+      <a href="submit.html" class="linknav"> Submit </a>
+      <a href="prizes.html" class="linknav"> Prizes </a>
+      <a href="account.html" class="linknav"> <img src="images/account.png" class="profileimg"></a>
+
+    </ul>
+  </nav>
   <div class="taskinfos">
     <h1>All Tasks</h1>
 
@@ -48,20 +49,22 @@
     <input type="text" id="search-form" placeholder="Search here...">
   </div>
 
-    <div class="search-results" id="search-results">
-      <div class="result-items">
-        <div class="left">
-          <h3>Art comp</h3>
-          <p>One time only, Hands-on, Competition</p>
-        </div>
-        <div class="right">
-          <p>draw or make something related to Carbon Footprint (50pts)</p>
-          <p style="display: none;" id="description"> a. Deliverables: Art piece & explanation (100 words max) <br> b. Grading Categories: visual & explanation <br> i. 2D <br> ii. 3D <br> c. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br>iv. 1st place: 250 pts + $100</p>
-          <button class="button" role="button" onclick="displayDetails()">Details</button>
-        </div>
+  <div class="search-results" id="search-results">
+    <div class="result-items">
+      <div class="left">
+        <h3>Art comp</h3>
+        <p>One time only, Hands-on, Competition</p>
       </div>
+      <div class="right">
+        <p>draw or make something related to Carbon Footprint (50pts)</p>
+        <p style="display: none;" id="description"> a. Deliverables: Art piece & explanation (100 words max) <br> b.
+          Grading Categories: visual & explanation <br> i. 2D <br> ii. 3D <br> c. Prizes: <br> i. Participation: 50 pts
+          <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br>iv. 1st place: 250 pts + $100</p>
+        <button class="button" role="button" onclick="displayDetails()">Details</button>
+      </div>
+    </div>
 
-<!--
+    <!--
       <div class="result-items">
         <div class="left">
           <h3>Video comp</h3>
@@ -74,17 +77,20 @@
         </div>
       </div>
 -->
-      <div class = "result-items">
-        <div class = "left">
-          <h3>Poetry comp</h3>
-          <p>One time only, Hands-on, Competition</p>
-        </div>
-        <div class = "right">
-          <p>write a poetry about the environment (50pts)</p>
-          <p style="display: none;" id="description2">a. Deliverables: poetry & explanation/literary analysis (100-200 words) <br> b. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place: 200 pts + $50 <br> iv. 1st place: 250 pts + $100</p>
-          <button class="button" role="button" onclick="displayDetails2()">Details</button>
-        </div>
+    <div class="result-items">
+      <div class="left">
+        <h3>Poetry comp</h3>
+        <p>One time only, Hands-on, Competition</p>
+      </div>
+      <div class="right">
+        <p>write a poetry about the environment (50pts)</p>
+        <p style="display: none;" id="description2">a. Deliverables: poetry & explanation/literary analysis (100-200
+          words) <br> b. Prizes: <br> i. Participation: 50 pts <br> ii. 3rd place: 150 pts + $25 <br> iii. 2nd place:
+          200 pts + $50 <br> iv. 1st place: 250 pts + $100</p>
+        <button class="button" role="button" onclick="displayDetails2()">Details</button>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
