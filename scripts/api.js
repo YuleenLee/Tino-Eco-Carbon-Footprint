@@ -136,8 +136,8 @@ function review_task(submission_id, accepted, points) {
             }
             else if (xhr.status == 201) {
                 alert("Task reviewed.");
-                window.location.href = "review.html";
             }
+            window.location.href = "review.html";
         }
     }
     xhr.onerror = function(e){
