@@ -9,7 +9,7 @@ function isOfficer(data) {
 }
 
 function requireOfficer() {
-    requireLogIn();
+    requireLogIn(false);
     const xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
@@ -33,7 +33,7 @@ function requireOfficer() {
     xhr.send();
 }
 
-function requireLogIn() {
+function requireLogIn(show=true) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
@@ -51,7 +51,7 @@ function requireLogIn() {
                     alert("Please login.");
                     window.location.href = "account.html";
                 }
-                else {
+                else if (show) {
                     document.getElementById("contentdiv").hidden = false;
                 }
             }
