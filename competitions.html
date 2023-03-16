@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,38 +13,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
   </head>
 
-  <body>
-    <script src="scripts/script.js"></script>
-    <nav>
+<body>
+  <script src="scripts/script.js"></script>
+  <nav>
       <ul id="nav">
         <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
         <a href="about.html" class = "linknav"> About </a>
         <a href="tasks.html" class = "linknav"> Tasks </a>
+        <a href="leaderboard.html" class="linknav"> Leaderboard </a>
         <a href="submit.html" class = "linknav"> Submit </a>
         <a href="prizes.html" class = "linknav"> Prizes </a>
         <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
       
       </ul>
     </nav>
+  <div class="taskinfos">
+    <h1>All Tasks</h1>
 
-    <div class = "taskinfo">
-      <h1>All Tasks</h1>
-  
-      <h4 style = "color: #be6060">If many applications are received, we will be able to bring more graded categories such as age groups.<br>If there are very less applications and the winning prize goes to a piece with no effort, we have the right to retract the prize.</h4>
-    </div>
+    <h4 style="color: #be6060">If many applications are received, we will be able to bring more graded categories such
+      as age groups.<br>If there are very less applications and the winning prize goes to a piece with no
+      effort, we
+      have the right to retract the prize.</h4>
+  </div>
+  <ul id="tabs">
+    <button class="btabs"><a href="competitions.html"> Competitions </a></button>
+    <button class="btabs"><a href="transportation.html"> Transportation </a></button>
+    <button class="btabs"><a href="renewableenergy.html"> Renewable Energy </a></button>
+    <button class="btabs"><a href="food.html"> Food </a></button>
+    <button class="btabs"><a href="miscellaneous.html"> Miscellaneous </a></button>
+  </ul>
 
-    <ul id="tabs">
-      <button class = "btabs"><a href="competitions.html"> Competitions </a></button>
-      <button class = "btabs"><a href="transportation.html"> Transportation </a></button>
-      <button class = "btabs"><a href="renewableenergy.html"> Renewable Energy </a></button>
-      <button class = "btabs"><a href="food.html"> Food </a></button>
-      <button class = "btabs"><a href="miscellaneous.html"> Miscellaneous </a></button>
-    </ul>
-
-    <div class="search-form">
-      <i class="bx bx-search-alt-2"></i>
-      <input type="text" id="search-form" placeholder="Search here...">
-    </div>
+  <div class="search-form">
+    <i class="bx bx-search-alt-2"></i>
+    <input type="text" id="search-form" placeholder="Search here...">
+  </div>
 
     <div class="search-results" id="search-results">
       <div class="result-items">
