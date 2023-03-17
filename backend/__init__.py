@@ -165,21 +165,18 @@ async def submit_task():
         abort(400)
 
     async with conn.cursor() as cursor:
-        task1 = await (await cursor.execute("""
+        task1 = (await (await cursor.execute("""
         SELECT COUNT(*)
         FROM submitted_tasks
-        WHERE task_id = ? AND username = ? AND submission = ?
+        WHERE task_id = ? AND username = ?
         """,
-        (task_id, username, submission))).fetchone()
-        task2 = await (await cursor.execute("""
+        (task_id, username))).fetchone())[0]
+        task2 = (await (await cursor.execute("""
         SELECT COUNT(*)
         FROM accepted_tasks
-        WHERE task_id = ? AND username = ? AND submission = ?
+        WHERE task_id = ? AND username = ?
         """,
-        (task_id, username, submission))).fetchone()
-
-        if not task1 or not task2:
-            return {'message': 'Duplucate submission.'}, 404, HEADERS
+        (task_id, username))).fetchone())[0]
         
         task_limit = await (await cursor.execute("""
         SELECT "limit"
@@ -187,10 +184,11 @@ async def submit_task():
         WHERE task_id = ?
         """,
         (task_id))).fetchone()
+
         if task_limit is None:
             return {'message': 'Invalid task.'}, 404, HEADERS
         
-        if task_limit[0] != -1 and task1[0] + task2[0] >= task_limit[0]:
+        if task_limit[0] != -1 and task1 + task2 >= task_limit[0]:
             return {'message': 'Maximum submissions reached.'}, 404, HEADERS
 
         await cursor.execute("""
