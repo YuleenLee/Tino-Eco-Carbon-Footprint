@@ -268,7 +268,40 @@ p{
 /* TASKS PAGE  */
 
 
-
 /* PRIZES @page */
 
 
+.taskinfos{
+  text-align: center;
+}
+
+#tabs{
+  padding: 10px;
+}
+
+.btabs{
+  text-decoration: none;
+  color: #000;
+  padding: 15px;
+  border-radius: 30px;
+  background-color: #ffffff
+  
+}
+
+.search-results .result-items .left p{
+  padding-top:10px;
+}
+
+a{
+  text-decoration: none;
+}
+
+
+.indent{
+  text-indent: 10%;
+}
+
+
+.taskinfo{
+  text-align: left
+}
