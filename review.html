@@ -27,11 +27,13 @@
       </ul>
     </nav>
     <div hidden="" id="contentdiv">
+      <h3>Accept Tasks</h3>
       <form action="javascript:review_task(document.getElementById('acceptTaskId').value, true, document.getElementById('acceptTaskPoints').value)">
         <input id='acceptTaskId' type='number' placeholder='submission id' required>
         <input id='acceptTaskPoints' type='number' placeholder='points' required>
         <button>Accept Task</button>
       </form>
+      <h3>Reject Tasks</h3>
       <form action="javascript:review_task(document.getElementById('rejectTaskId').value, false, 0)">
         <input id='rejectTaskId' type='number' placeholder='submission id' required>
         <button>Reject Task</button>
