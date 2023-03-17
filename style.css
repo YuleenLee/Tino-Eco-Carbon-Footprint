@@ -252,6 +252,18 @@ p{
   width: 50%;
 }
 
+.part{
+  display: flex;
+  flex-direction: column;
+  width: 33%
+}
+
+
+.part p{
+  width: 75%;
+  text-align: center;
+  margin: auto;
+}
 
 /* TASKS PAGE  */
 
