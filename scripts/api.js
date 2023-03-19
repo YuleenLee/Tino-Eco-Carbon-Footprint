@@ -171,9 +171,12 @@ function fill_leaderboard() {
 function fill_task_tables() {
     const xhr = new XMLHttpRequest();
     xhr.open(
-        "GET",
+        "POST",
         "http://127.0.0.1:5000/accepted_tasks",
     );
+    const body = JSON.stringify({
+        "username": sessionStorage.getItem("username"),
+    });
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const data = JSON.parse(xhr.responseText)["data"];
@@ -186,7 +189,7 @@ function fill_task_tables() {
     }
     const xhr2 = new XMLHttpRequest();
     xhr2.open(
-        "GET",
+        "POST",
         "http://127.0.0.1:5000/submitted_tasks",
     );
     xhr2.onload = () => {
@@ -205,6 +208,25 @@ function fill_task_tables() {
     xhr2.onerror = function(e){
         window.location.href = "oops.html";
     };
-    xhr.send();
-    xhr2.send();
+    xhr.send(body);
+    xhr2.send(body);
+}
+
+function setUserPoints() {
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+        "POST",
+        "http://127.0.0.1:5000/user_points",
+    );
+    const body = JSON.stringify({
+        "username": sessionStorage.getItem("username"),
+    });
+    xhr.onload = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            const data = JSON.parse(xhr.responseText);
+            var pointsHtml = `Total Points: ${data["points"]}`;
+            document.getElementById("pointsH3").innerHTML = pointsHtml;
+        }
+    }
+    xhr.send(body);
 }

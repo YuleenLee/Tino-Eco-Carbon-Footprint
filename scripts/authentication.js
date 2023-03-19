@@ -1,6 +1,5 @@
 function isOfficer(data) {
-    const username = sessionStorage.getItem("username");
-    if (!data["data"].includes(username)) {
+    if (!data["is_officer"]) {
         window.location.href = "index.html";
     }
     else {
@@ -12,9 +11,12 @@ function requireOfficer() {
     requireLogIn(false);
     const xhr = new XMLHttpRequest();
     xhr.open(
-        "GET",
-        "http://127.0.0.1:5000/officers"
+        "POST",
+        "http://127.0.0.1:5000/is_officer"
     );
+    const body = JSON.stringify({
+        "username": sessionStorage.getItem("username"),
+    });
     xhr.addEventListener("readystatechange", function() {
         if (this.readyState == this.DONE) {
             if (xhr.status == 200) {
@@ -30,7 +32,7 @@ function requireOfficer() {
     xhr.onerror = function(e){
         window.location.href = "oops.html";
     };
-    xhr.send();
+    xhr.send(body);
 }
 
 function requireLogIn(show=true) {

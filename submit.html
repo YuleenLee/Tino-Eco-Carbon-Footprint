@@ -36,6 +36,13 @@
       <input id='submitSubmission' type='text' placeholder='submission' required>
       <button>Submit Task</button>
     </form>
+    <h3 id="pointsH3">Total Points:</h3>
+    <h3>Submitted Tasks</h3>
+    <table id="submittedTasksList"></table>
+    <h3>Accepted Tasks</h3>
+    <table id="acceptedTasksList"></table>
+    <script>fill_task_tables()</script>
+    <script>setUserPoints()</script>
   </div>
   <script>requireLogIn()</script>
 </body>

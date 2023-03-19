@@ -11,9 +11,28 @@ HEADERS = {
 app = Quart(__name__)
 conn = None
 
+async def is_officer(username):
+    async with conn.cursor() as cursor:
+        user = await (await cursor.execute("""SELECT 1 FROM user_info WHERE is_officer = 1 AND username = ?""", (username))).fetchone()
+        return user is not None
+
 @app.route("/")
 async def main():
     return "Online."
+
+@app.post("/user_points")
+async def user_points():
+    data = await request.get_json(force=True)
+
+    try:
+        username = data["username"]
+    except KeyError:
+        abort(400)
+        
+    async with conn.cursor() as cursor:
+        points_row = await (await cursor.execute("SELECT points FROM user_info WHERE username = ?", (username))).fetchone()
+
+    return {"points": points_row[0]}, 200, HEADERS
 
 @app.post("/is_valid_session")
 async def is_valid_session():
@@ -39,14 +58,16 @@ async def is_valid_session():
         return {"is_valid_session": False}, 200, HEADERS
     return {"is_valid_session": True}, 200, HEADERS
 
-@app.get("/officers")
-async def officers():
-    officers = []
-    async with conn.cursor() as cursor:
-        for row in await (await cursor.execute("""SELECT username FROM user_info WHERE is_officer = 1""")).fetchall():
-            officers.append(row[0])
+@app.post("/is_officer")
+async def officer():
+    data = await request.get_json(force=True)
 
-    return {'data': officers}, 200, HEADERS
+    try:
+        username = data["username"]
+    except KeyError:
+        abort(400)
+        
+    return {"is_officer": await is_officer(username)}, 200, HEADERS
 
 @app.post("/create_account")
 async def create_account():
@@ -109,31 +130,55 @@ async def login():
 
     return {"session_id": session_id}, 201, HEADERS
 
-@app.get("/submitted_tasks")
+@app.post("/submitted_tasks")
 async def submitted_tasks():
-    tasks = []
+    data = await request.get_json(force=True)
+
+    try:
+        username = data["username"]
+    except KeyError:
+        abort(400)
+
     async with conn.cursor() as cursor:
-        for row in await (await cursor.execute("""SELECT * FROM submitted_tasks""")).fetchall():
-            tasks.append({
-                "submission_id": row[0],
-                "task_id": row[1],
-                "username": row[2],
-                "submission": row[3],
-            })
+        if await is_officer(username):
+            stuff = await (await cursor.execute("SELECT * FROM submitted_tasks")).fetchall()
+        else:
+            stuff = await (await cursor.execute("SELECT * FROM submitted_tasks WHERE username = ?", (username))).fetchall()
+        
+    tasks = []
+    for row in stuff:
+        tasks.append({
+            "submission_id": row[0],
+            "task_id": row[1],
+            "username": row[2],
+            "submission": row[3],
+        })
 
     return {'data': tasks}, 200, HEADERS
 
-@app.get("/accepted_tasks")
+@app.post("/accepted_tasks")
 async def accepted_tasks():
-    tasks = []
+    data = await request.get_json(force=True)
+
+    try:
+        username = data["username"]
+    except KeyError:
+        abort(400)
+
     async with conn.cursor() as cursor:
-        for row in await (await cursor.execute("""SELECT * FROM accepted_tasks""")).fetchall():
-            tasks.append({
-                "submission_id": row[0],
-                "task_id": row[1],
-                "username": row[2],
-                "submission": row[3],
-            })
+        if await is_officer(username):
+            stuff = await (await cursor.execute("SELECT * FROM accepted_tasks")).fetchall()
+        else:
+            stuff = await (await cursor.execute("SELECT * FROM accepted_tasks WHERE username = ?", (username))).fetchall()
+        
+    tasks = []
+    for row in stuff:
+        tasks.append({
+            "submission_id": row[0],
+            "task_id": row[1],
+            "username": row[2],
+            "submission": row[3],
+        })
 
     return {'data': tasks}, 200, HEADERS
 
