@@ -6,11 +6,11 @@ async def main():
         async with conn.cursor() as cursor:
             await cursor.execute("""
             CREATE TABLE "user_info" (
-                "username" TEXT,
+                "email" TEXT,
                 "password" TEXT,
                 "points" INTEGER DEFAULT 0 CHECK(points>=0),
                 "is_officer" BOOLEAN DEFAULT 0 CHECK(is_officer>=0),
-                PRIMARY KEY("username")
+                PRIMARY KEY("email")
             )
             """)
             await cursor.execute("""
@@ -23,28 +23,28 @@ async def main():
             CREATE TABLE "submitted_tasks" (
                 "submission_id" INTEGER PRIMARY KEY,
                 "task_id" INTEGER,
-                "username" TEXT,
+                "email" TEXT,
                 "submission" TEXT,
                 FOREIGN KEY("task_id") REFERENCES "task_info"("task_id") ON DELETE CASCADE,
-                FOREIGN KEY("username") REFERENCES "user_info"("username") ON DELETE CASCADE
+                FOREIGN KEY("email") REFERENCES "user_info"("email") ON DELETE CASCADE
             )
             """)
             await cursor.execute("""
             CREATE TABLE "accepted_tasks" (
                 "submission_id" INTEGER,
                 "task_id" INTEGER,
-                "username" TEXT,
+                "email" TEXT,
                 "submission" TEXT,
                 FOREIGN KEY("task_id") REFERENCES "task_info"("task_id") ON DELETE CASCADE,
-                FOREIGN KEY("username") REFERENCES "user_info"("username") ON DELETE CASCADE
+                FOREIGN KEY("email") REFERENCES "user_info"("email") ON DELETE CASCADE
             )
             """)
             await cursor.execute("""
             CREATE TABLE "session_info" (
                 "session_id" TEXT,
-                "username" TEXT,
+                "email" TEXT,
                 "expires" TIMESTAMP,
-                FOREIGN KEY("username") REFERENCES "user_info"("username") ON DELETE CASCADE
+                FOREIGN KEY("email") REFERENCES "user_info"("email") ON DELETE CASCADE
             )
             """)
 

@@ -1,4 +1,4 @@
-function create_account(username, password) {
+function create_account(email, password) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
@@ -6,7 +6,7 @@ function create_account(username, password) {
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
-        "username": username,
+        "email": email,
         "password": password,
     });
     xhr.onload = () => {
@@ -26,7 +26,7 @@ function create_account(username, password) {
     xhr.send(body);
 }
 
-function login(username, password) {
+function login(email, password) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
@@ -34,7 +34,7 @@ function login(username, password) {
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
-        "username": username,
+        "email": email,
         "password": password,
     });
     xhr.onload = () => {
@@ -44,7 +44,7 @@ function login(username, password) {
                 alert(data["message"]);
             }
             else if (xhr.status == 201) {
-                sessionStorage.setItem("username", username);
+                sessionStorage.setItem("email", email);
                 sessionStorage.setItem("session_id", data["session_id"]);
                 window.location.href = "index.html";
             }
@@ -63,7 +63,7 @@ function submit_task(task_id, submission) {
         "http://127.0.0.1:5000/is_valid_session"
     );
     const body = JSON.stringify({
-        "username": sessionStorage.getItem("username"),
+        "email": sessionStorage.getItem("email"),
         "session_id": sessionStorage.getItem("session_id"),
     });
     xhr.addEventListener("readystatechange", function() {
@@ -95,7 +95,7 @@ function actuallySubmit(task_id, submission) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
         "task_id": task_id,
-        "username": sessionStorage.getItem("username"),
+        "email": sessionStorage.getItem("email"),
         "submission": submission,
     });
     xhr.onload = () => {
@@ -158,9 +158,9 @@ function fill_leaderboard() {
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const data = JSON.parse(xhr.responseText)["data"];
-            var lbHtml = "<tr><th>Rank</th><th>Username</th><th>Points</th></tr>";
+            var lbHtml = "<tr><th>Rank</th><th>Email</th><th>Points</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                lbHtml += `<tr><td>${i + 1}</td><td>${data[i]["username"]}</td><td>${data[i]["points"]}</td></tr>`;
+                lbHtml += `<tr><td>${i + 1}</td><td>${data[i]["email"]}</td><td>${data[i]["points"]}</td></tr>`;
             }
             document.getElementById("leaderboardTable").innerHTML = lbHtml;
         }
@@ -175,7 +175,7 @@ function fill_task_tables() {
         "http://127.0.0.1:5000/accepted_tasks",
     );
     const body = JSON.stringify({
-        "username": sessionStorage.getItem("username"),
+        "email": sessionStorage.getItem("email"),
     });
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -219,7 +219,7 @@ function setUserPoints() {
         "http://127.0.0.1:5000/user_points",
     );
     const body = JSON.stringify({
-        "username": sessionStorage.getItem("username"),
+        "email": sessionStorage.getItem("email"),
     });
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {

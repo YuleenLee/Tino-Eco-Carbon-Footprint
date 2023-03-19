@@ -15,7 +15,7 @@ function requireOfficer() {
         "http://127.0.0.1:5000/is_officer"
     );
     const body = JSON.stringify({
-        "username": sessionStorage.getItem("username"),
+        "email": sessionStorage.getItem("email"),
     });
     xhr.addEventListener("readystatechange", function() {
         if (this.readyState == this.DONE) {
@@ -42,7 +42,7 @@ function requireLogIn(show=true) {
         "http://127.0.0.1:5000/is_valid_session"
     );
     const body = JSON.stringify({
-        "username": sessionStorage.getItem("username"),
+        "email": sessionStorage.getItem("email"),
         "session_id": sessionStorage.getItem("session_id"),
     });
     xhr.addEventListener("readystatechange", function() {
