@@ -153,7 +153,7 @@ p{
 /*  main center thing*/
 
 .main-center{
-  width: 75%;
+  width: 100%;
   text-align: center;
   margin: auto;
   top: 10%;
@@ -272,3 +272,15 @@ p{
 /* PRIZES @page */
 
 
+.teams {
+    display: flex;
+    flex-direction: row;
+    width: 100;
+    padding-bottom: 50px;
+  }
+
+  .team {
+    width: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    height: 500px;
+  }
