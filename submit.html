@@ -21,6 +21,7 @@
 
     h3{
       text-align: center;
+      padding: 4%;
     }
     #submittedTasksList {
       font-family: Arial, Helvetica, sans-serif;
@@ -80,6 +81,19 @@
       background-color: #3a3399;
       color: white;
     }
+
+
+    form{
+      margin: auto;
+      
+    }
+
+    input{
+      width: 20%;
+      height: 15%;
+      border-radius: 7px;
+      border-color: #3a3399
+    }
     
   </style>
   <nav>
@@ -102,9 +116,9 @@
       <button>Submit Task</button>
     </form>
     <h3 id="pointsH3">Total Points:</h3>
-    <h3>Submitted Tasks</h3>
+    <h3 style = "font-size: 23px;">Submitted Tasks</h3>
     <table id="submittedTasksList"></table>
-    <h3>Accepted Tasks</h3>
+    <h3 style = "font-size: 23px;">Accepted Tasks</h3>
     <table id="acceptedTasksList"></table>
     <script>fill_task_tables()</script>
     <script>setUserPoints()</script>
