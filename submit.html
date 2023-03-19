@@ -17,6 +17,35 @@
 <body>
   <script src="scripts/authentication.js"></script>
   <script src="scripts/api.js"></script>
+  <style>
+    #submittedTasksList {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #submittedTasksList td,
+    #submittedTasksList th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #submittedTasksList tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #submittedTasksList tr:hover {
+      background-color: #ddd;
+    }
+
+    #submittedTasksList th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
+  </style>
   <nav>
     <ul id="nav">
       <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
