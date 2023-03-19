@@ -19,6 +19,10 @@
   <script src="scripts/api.js"></script>
   <style>
 
+    body{
+      text-align: center;
+    }
+
     h3{
       text-align: center;
       padding-bottom: 3%;
@@ -87,8 +91,7 @@
     }
 
 
-    #contentdiv{
-      margin: auto;
+    .inside{
       display: inline-block;
     }
 
@@ -96,7 +99,8 @@
       width: 40%;
       height: 50px;
       border-radius: 7px;
-      border-color: #3a3399
+      border-color: #3a3399;
+
     }
 
     button{
@@ -127,12 +131,14 @@
     </ul>
   </nav>
   <div hidden="" id="contentdiv">
+    <div class = "inside">
     <form
       action="javascript:submit_task(document.getElementById('submitTaskId').value, document.getElementById('submitSubmission').value)">
       <input id='submitTaskId' type='number' placeholder='task id' required>
       <input id='submitSubmission' type='text' placeholder='submission' required>
       <button>Submit Task</button>
     </form>
+    </div>
     <h3 id="pointsH3">Total Points:</h3>
     <h3 style = "font-size: 23px;">Submitted Tasks</h3>
     <table id="submittedTasksList"></table>
