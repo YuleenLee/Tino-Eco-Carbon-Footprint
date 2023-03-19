@@ -11,9 +11,9 @@ HEADERS = {
 app = Quart(__name__)
 conn = None
 
-async def is_officer(username):
+async def is_officer(email):
     async with conn.cursor() as cursor:
-        user = await (await cursor.execute("""SELECT 1 FROM user_info WHERE is_officer = 1 AND username = ?""", (username))).fetchone()
+        user = await (await cursor.execute("""SELECT 1 FROM user_info WHERE is_officer = 1 AND email = ?""", (email))).fetchone()
         return user is not None
 
 @app.route("/")
@@ -25,12 +25,12 @@ async def user_points():
     data = await request.get_json(force=True)
 
     try:
-        username = data["username"]
+        email = data["email"]
     except KeyError:
         abort(400)
         
     async with conn.cursor() as cursor:
-        points_row = await (await cursor.execute("SELECT points FROM user_info WHERE username = ?", (username))).fetchone()
+        points_row = await (await cursor.execute("SELECT points FROM user_info WHERE email = ?", (email))).fetchone()
 
     return {"points": points_row[0]}, 200, HEADERS
 
@@ -39,7 +39,7 @@ async def is_valid_session():
     data = await request.get_json(force=True)
     
     try:
-        username = data["username"]
+        email = data["email"]
         session_id = data["session_id"]
     except KeyError:
         abort(400)
@@ -50,9 +50,9 @@ async def is_valid_session():
         session = await (await cursor.execute("""
         SELECT expires
         FROM session_info
-        WHERE session_id = ? AND username = ?
+        WHERE session_id = ? AND email = ?
         """,
-        (session_id, username))).fetchone()
+        (session_id, email))).fetchone()
 
     if session is None or session[0] < datetime.now():
         return {"is_valid_session": False}, 200, HEADERS
@@ -63,18 +63,18 @@ async def officer():
     data = await request.get_json(force=True)
 
     try:
-        username = data["username"]
+        email = data["email"]
     except KeyError:
         abort(400)
         
-    return {"is_officer": await is_officer(username)}, 200, HEADERS
+    return {"is_officer": await is_officer(email)}, 200, HEADERS
 
 @app.post("/create_account")
 async def create_account():
     data = await request.get_json(force=True)
 
     try:
-        username = data["username"]
+        email = data["email"]
         password = data["password"]
     except KeyError:
         abort(400)
@@ -83,18 +83,18 @@ async def create_account():
         user = await (await cursor.execute("""
         SELECT 1
         FROM user_info
-        WHERE username = ?
+        WHERE email = ?
         """,
-        (username))).fetchone()
+        (email))).fetchone()
 
         if user is not None:
-            return {'message': 'A user with that username already exists.'}, 404, HEADERS
+            return {'message': 'A user with that email already exists.'}, 404, HEADERS
 
         await cursor.execute("""
-        INSERT INTO user_info(username, password)
+        INSERT INTO user_info(email, password)
         VALUES (?, ?)
         """,
-        (username, password))
+        (email, password))
         await conn.commit()
 
     return Response(status=201, headers=HEADERS)
@@ -104,7 +104,7 @@ async def login():
     data = await request.get_json(force=True)
     
     try:
-        username = data["username"]
+        email = data["email"]
         password = data["password"]
     except KeyError:
         abort(400)
@@ -113,20 +113,20 @@ async def login():
         user = await (await cursor.execute("""
         SELECT 1
         FROM user_info
-        WHERE username = ? AND password = ?
+        WHERE email = ? AND password = ?
         """,
-        (username, password))).fetchone()
+        (email, password))).fetchone()
 
         if user is None:
             return {'message': 'Invalid login information.'}, 404, HEADERS
         
         now = datetime.now()
-        session_id = hashlib.sha256(f"{username}{password}{now}".encode()).hexdigest()
+        session_id = hashlib.sha256(f"{email}{password}{now}".encode()).hexdigest()
         await cursor.execute("""
         INSERT INTO session_info
         VALUES (?, ?, ?)
         """,
-        (session_id, username, now + timedelta(days=7)))
+        (session_id, email, now + timedelta(days=7)))
 
     return {"session_id": session_id}, 201, HEADERS
 
@@ -135,22 +135,22 @@ async def submitted_tasks():
     data = await request.get_json(force=True)
 
     try:
-        username = data["username"]
+        email = data["email"]
     except KeyError:
         abort(400)
 
     async with conn.cursor() as cursor:
-        if await is_officer(username):
+        if await is_officer(email):
             stuff = await (await cursor.execute("SELECT * FROM submitted_tasks")).fetchall()
         else:
-            stuff = await (await cursor.execute("SELECT * FROM submitted_tasks WHERE username = ?", (username))).fetchall()
+            stuff = await (await cursor.execute("SELECT * FROM submitted_tasks WHERE email = ?", (email))).fetchall()
         
     tasks = []
     for row in stuff:
         tasks.append({
             "submission_id": row[0],
             "task_id": row[1],
-            "username": row[2],
+            "email": row[2],
             "submission": row[3],
         })
 
@@ -161,22 +161,22 @@ async def accepted_tasks():
     data = await request.get_json(force=True)
 
     try:
-        username = data["username"]
+        email = data["email"]
     except KeyError:
         abort(400)
 
     async with conn.cursor() as cursor:
-        if await is_officer(username):
+        if await is_officer(email):
             stuff = await (await cursor.execute("SELECT * FROM accepted_tasks")).fetchall()
         else:
-            stuff = await (await cursor.execute("SELECT * FROM accepted_tasks WHERE username = ?", (username))).fetchall()
+            stuff = await (await cursor.execute("SELECT * FROM accepted_tasks WHERE email = ?", (email))).fetchall()
         
     tasks = []
     for row in stuff:
         tasks.append({
             "submission_id": row[0],
             "task_id": row[1],
-            "username": row[2],
+            "email": row[2],
             "submission": row[3],
         })
 
@@ -187,12 +187,12 @@ async def leaderboard():
     users = []
     async with conn.cursor() as cursor:
         for row in await (await cursor.execute("""
-        SELECT username, points FROM user_info
+        SELECT email, points FROM user_info
         WHERE points > 0
         ORDER BY points DESC
         """)).fetchall():
             users.append({
-                "username": row[0],
+                "email": row[0],
                 "points": row[1],
             })
 
@@ -203,7 +203,7 @@ async def submit_task():
     data = await request.get_json(force=True)
 
     try:
-        username = data["username"]
+        email = data["email"]
         task_id = int(data["task_id"])
         submission = data["submission"]
     except KeyError:
@@ -213,15 +213,15 @@ async def submit_task():
         task1 = (await (await cursor.execute("""
         SELECT COUNT(*)
         FROM submitted_tasks
-        WHERE task_id = ? AND username = ?
+        WHERE task_id = ? AND email = ?
         """,
-        (task_id, username))).fetchone())[0]
+        (task_id, email))).fetchone())[0]
         task2 = (await (await cursor.execute("""
         SELECT COUNT(*)
         FROM accepted_tasks
-        WHERE task_id = ? AND username = ?
+        WHERE task_id = ? AND email = ?
         """,
-        (task_id, username))).fetchone())[0]
+        (task_id, email))).fetchone())[0]
         
         task_limit = await (await cursor.execute("""
         SELECT "limit"
@@ -237,10 +237,10 @@ async def submit_task():
             return {'message': 'Maximum submissions reached.'}, 404, HEADERS
 
         await cursor.execute("""
-        INSERT INTO submitted_tasks(task_id, username, submission)
+        INSERT INTO submitted_tasks(task_id, email, submission)
         VALUES (?, ?, ?)
         """,
-        (task_id, username, submission))
+        (task_id, email, submission))
         await conn.commit()
 
     return Response(status=201, headers=HEADERS)
@@ -289,13 +289,13 @@ async def review_task():
 
             user_points = (await (await cursor.execute("""
             SELECT points FROM user_info
-            WHERE username = ?
+            WHERE email = ?
             """,
             (task[2]))).fetchone())[0]
             await cursor.execute("""
             UPDATE user_info
             SET points = ?
-            WHERE username = ?
+            WHERE email = ?
             """,
             (user_points + points, task[2]))
 
