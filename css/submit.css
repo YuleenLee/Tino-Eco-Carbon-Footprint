@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif;
+}
+
 h2 {
   padding: 1rem;
 }
@@ -23,95 +31,33 @@ h2 {
   float: left;
 }
 
-h4{
-  padding: 1rem;
-}
-
-.left,
-.right {
-  display: inline-block;
-  padding: 1rem;
-}
-
-.task {
-  text-align: center;
-}
-
-p{
-  padding-bottom: 1rem;
-}
-
-/* 
-.button:after {
-  content: "";
-  background-color: lightblue;
-  width: 100%;
-  z-index: -1;
-  position: absolute;
-  height: 100%;
-  top: 7px;
-  left: 7px;
-  transition: 0.2s;
-}
-
-.button:hover:after {
-  top: 0px;
-  left: 0px;
-} */
-
-
-#divider {
-  width: 99%;
-  padding-left: 4rem;
-  padding-right: 4rem;
-
-}
-
-.search-form {
-  margin: 15px 0;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-}
-
-.search-form i {
-  position: absolute;
-  font-size: 26px;
-  width: 36px;
-  height: 36px;
-  padding: 8px;
-}
-
-.search-form input {
-  width: 100%;
-  padding: 8px 12px;
-  padding-left: 42px;
-  font-size: 16px;
-  border: 1px solid cornflowerblue;
-  border-radius: 30px;
-}
-
-.search-form input:focus {
-  outline: none;
-  border: 1px solid black;
-}
-
-.search-results .result-items{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    padding: 1rem 1rem;
-    border-bottom: 0.5px solid black;
-}
-
-
-/*  front page thing */
-
-/* navbar */
 #nav{
   width:100%;
   
 }
+
+.linknav{
+  padding: 20px;
+  text-decoration: none;
+  color: #212121
+}
+
+.profileimg{
+  width:40px;
+  height: 40px;
+  position: relative;
+  top: 10px;
+}
+
+/*  main center thing*/
+
+.main-center{
+  width: 75%;
+  text-align: center;
+  margin: auto;
+  top: 10%;
+}
+
 
 body{
   text-align: center;
