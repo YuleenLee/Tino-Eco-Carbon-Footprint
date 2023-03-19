@@ -112,6 +112,7 @@
         font-size: 16px;
         width: 50%;
         cursor: pointer;
+        border-radius: 10px;
     }
     
   </style>
@@ -132,7 +133,7 @@
     <div class = "inside">
     <form
       action="javascript:submit_task(document.getElementById('submitTaskId').value, document.getElementById('submitSubmission').value)">
-      <input id='submitTaskId' type='number' placeholder='task id' required>
+      <input style = "padding-bottom: 10px;" id='submitTaskId' type='number' placeholder='task id' required>
       <input id='submitSubmission' type='text' placeholder='submission' required>
       <button>Submit Task</button>
     </form>
