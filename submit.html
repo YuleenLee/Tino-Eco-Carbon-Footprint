@@ -25,7 +25,7 @@
 
     h3{
       text-align: center;
-      padding-bottom: 3%;
+      padding-bottom: 2%;
     }
     #submittedTasksList {
       font-family: Arial, Helvetica, sans-serif;
@@ -86,10 +86,6 @@
       color: white;
     }
 
-    #submittedTasksList{
-      padding-bottom: 2%
-    }
-
 
     .inside{
       display: inline-block;
@@ -97,11 +93,11 @@
     }
 
     input{
-      width: 40%;
+      width: 50%;
       height: 50px;
       border-radius: 7px;
       border-color: #3a3399;
-
+      padding: 7px;
     }
 
     button{
@@ -114,7 +110,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        width: 70px;
+        width: 50%;
         cursor: pointer;
     }
     
@@ -144,7 +140,7 @@
     
     <h3 style = "font-size: 23px;">Submitted Tasks</h3>
     <table id="submittedTasksList"></table>
-    <h3 style = "font-size: 23px;">Accepted Tasks</h3>
+    <h3 style = "font-size: 23px; padding-top: 2%;">Accepted Tasks</h3>
     <table id="acceptedTasksList"></table>
     <script>fill_task_tables()</script>
     <script>setUserPoints()</script>
