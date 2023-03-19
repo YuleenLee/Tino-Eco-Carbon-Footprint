@@ -32,6 +32,9 @@ async def user_points():
     async with conn.cursor() as cursor:
         points_row = await (await cursor.execute("SELECT points FROM user_info WHERE email = ?", (email))).fetchone()
 
+    if points_row is None:
+        return {'message': 'Invalid user.'}, 404, HEADERS
+
     return {"points": points_row[0]}, 200, HEADERS
 
 @app.post("/is_valid_session")
