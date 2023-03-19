@@ -86,13 +86,14 @@
       color: white;
     }
 
-    table{
+    #submittedTasksList{
       padding-bottom: 2%
     }
 
 
     .inside{
       display: inline-block;
+      padding-bottom: 3%;
     }
 
     input{
@@ -113,7 +114,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        width: 20%;
+        width: 70px;
         cursor: pointer;
     }
     
@@ -131,6 +132,7 @@
     </ul>
   </nav>
   <div hidden="" id="contentdiv">
+    <h3 id="pointsH3">Total Points:</h3>
     <div class = "inside">
     <form
       action="javascript:submit_task(document.getElementById('submitTaskId').value, document.getElementById('submitSubmission').value)">
@@ -139,7 +141,7 @@
       <button>Submit Task</button>
     </form>
     </div>
-    <h3 id="pointsH3">Total Points:</h3>
+    
     <h3 style = "font-size: 23px;">Submitted Tasks</h3>
     <table id="submittedTasksList"></table>
     <h3 style = "font-size: 23px;">Accepted Tasks</h3>
