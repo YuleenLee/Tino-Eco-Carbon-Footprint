@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carbon Footprint Competition</title>
-  <link href="style.css" rel="stylesheet">
+  <link href="css/submit.css" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png" />
@@ -19,102 +19,7 @@
   <script src="scripts/api.js"></script>
   <style>
 
-    body{
-      text-align: center;
-    }
 
-    h3{
-      text-align: center;
-      padding-bottom: 2%;
-    }
-    #submittedTasksList {
-      font-family: Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
-      width: 80%;
-      margin: auto;
-    }
-
-    #submittedTasksList td,
-    #submittedTasksList th {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-
-    #submittedTasksList tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    #submittedTasksList tr:hover {
-      background-color: #ddd;
-    }
-
-    #submittedTasksList th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
-      background-color: #3a3399;
-      color: white;
-    }
-
-
-    #acceptedTasksList {
-      font-family: Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
-      width: 80%;
-      margin: auto;
-    }
-
-    #acceptedTasksList td,
-    #acceptedTasksList th {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-
-    #acceptedTasksList tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    #acceptedTasksList tr:hover {
-      background-color: #ddd;
-    }
-
-    #acceptedTasksList th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
-      background-color: #3a3399;
-      color: white;
-    }
-
-
-    .inside{
-      display: inline-block;
-      padding-bottom: 3%;
-    }
-
-    input{
-      width: 50%;
-      height: 50px;
-      border-radius: 7px;
-      border-color: #3a3399;
-      padding: 7px;
-    }
-
-    button{
-        background-color: #3a3399;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        margin-top: 2%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        width: 50%;
-        cursor: pointer;
-        border-radius: 10px;
-    }
-    
   </style>
   <nav>
     <ul id="nav">
@@ -134,7 +39,7 @@
     <form
       action="javascript:submit_task(document.getElementById('submitTaskId').value, document.getElementById('submitSubmission').value)">
       <input  id='submitTaskId' type='number' placeholder='task id' required style = "margin-bottom: 10px;">
-      <input id='submitSubmission' type='text' placeholder='submission' required>
+      <input id='submitSubmission' type='text' placeholder='submission link' required>
       <button>Submit Task</button>
     </form>
     </div>
