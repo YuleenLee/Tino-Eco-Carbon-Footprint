@@ -6,6 +6,9 @@
   font-family: 'Syne', sans-serif;
   text-align: center
 }
+.linknav{
+    line-height: 100px;
+  }
 
 h2 {
   padding: 1rem;
@@ -151,8 +154,9 @@ p{
   top: 10px;
 }
 
-.stuff{
+/* .stuff{
   display: flex;
-  flex-direction: row;
+  flex-direction: c;
 }
 
+ */

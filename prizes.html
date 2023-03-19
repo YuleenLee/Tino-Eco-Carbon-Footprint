@@ -1,78 +1,203 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Footprint Competition</title>
-    <link href="css/prizes.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Competition</title>
+  <link href="css/prizes.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="images/TinoEcoIconTransparentBackground.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
+</head>
+<style>
+  .card {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: #F6F6F6;
+    border-radius: 10px;
+    margin: auto;
 
-  <body>
-   <nav>
-      <ul id="nav">
-        <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
-        <a href="about.html" class = "linknav"> About </a>
-        <a href="tasks.html" class = "linknav"> Tasks </a>
-        <a href="leaderboard.html" class="linknav"> Leaderboard </a>
-        <a href="submit.html" class = "linknav"> Submit </a>
-        <a href="prizes.html" class = "linknav"> Prizes </a>
-        <a href="account.html" class = "linknav"> <img src="images/account.png" class = "profileimg"></a>
-      </ul>
-    </nav>
-  <div class = "stuff">
-  <div class = "section">
+  }
+
+  .header {
+    height: 30%;
+    background: gray;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .container {
+    padding: 2px 16px;
+  }
+
+  .section1 {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .cards {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 25%;
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .cards:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /* Add some padding inside the card container */
+  .containers {
+    padding: 2px 16px;
+  }
+
+  .cards {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    /* 5px rounded corners */
+  }
+
+  /* Add rounded corners to the top left and the top right corner of the image */
+  img {
+    border-radius: 5px 5px 0 0;
+  }
+
+  .diffsec{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 50px;
+    width: 80%;
+    margin: auto;
+    flex: auto;
+    align-items: stretch
+  }
+
+  .cards{
+    padding: 10px;
+  }
+</style>
+
+<body>
+  <nav>
+    <ul id="nav">
+      <a href="index.html"> <img id="logo" src="images/TinoEcoIcon.png"></a>
+      <a href="about.html" class="linknav"> About </a>
+      <a href="tasks.html" class="linknav"> Tasks </a>
+      <a href="leaderboard.html" class="linknav"> Leaderboard </a>
+      <a href="submit.html" class="linknav"> Submit </a>
+      <a href="prizes.html" class="linknav"> Prizes </a>
+      <a href="account.html" class="linknav"> <img src="images/account.png" class="profileimg"></a>
+    </ul>
+  </nav>
+  <div class="stuff">
     <h4>Prizes (more awards, better prizes) may change due to participation and quality of work.</h4>
-    <h4>Small Comp Winners: $825 (2 age groups in each)</h4>
-    <p>2D Art/3D Art</p>
-    <!-- this part below indented until poetry -->
-    <p>0-16               150, 75, 50</p>
-    <p>16-infinite        150, 75, 50</p>
-    <p>Poetry</p>
-    <!--indent -->
-    <p>No age group       150, 75, 50</p>
+    <div class="section1">
 
-    <h4>CFC Winners: $550</h4>
-    <p>1st: $200</p>
-    <p>2nd: $150</p>
-    <p>3rd: $100</p>
-    <p>4th-5th: $50</p>
-    <img src="images/undraw_Gift_card_re_5dyy.png" style="width: 50%; height: 25%;">
+      <div class="card">
+        <div class="header">
+          <h4>Small Comp Winners: $825 (2 age groups in each)</h4>
+        </div>
+        <div class="container">
+          <p>2D Art/3D Art</p>
+          <!-- this part below indented until poetry -->
+          <p>0-16 150, 75, 50</p>
+          <p>16-infinite 150, 75, 50</p>
+          <p>Poetry</p>
+          <!--indent -->
+          <p>No age group 150, 75, 50</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="header">
+          <h4>CFC Winners: $550</h4>
+        </div>
+        <div class="container">
+          <p>1st: $200</p>
+          <p>2nd: $150</p>
+          <p>3rd: $100</p>
+          <p>4th-5th: $50</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="section">
+      <h4>Prizes with a ? will be revealed when someone reaches the checkpoint.</h4>
+      <h4>Signup: sticker + eraser (while stock lasts)</h4>
+      <h4>50pt (120): $5 giftcard</h4>
+      <h4>100pt (90): Enviornment Pack (straw + straw clearner + bag: color/produce)</h4>
+
+      <!--indent until next pt value -->
+      <div class="diffsec">
+        </a>
+        <div class="cards">
+            <img src="images/plasticstraws.png" alt="img" style="width:100%">
+            <div class="containers">
+              <h4><b>52 ($0.14 ea)</b></h4>
+              <p>Reusable Plastic Straws</p>
+            </div>
+        </div>
+        </a>
+        <div class="cards">
+            <img src="images/strawsstuff.png" alt="img" style="width:100%">
+            <div class="containers">
+              <h4><b>(metal stainless/12/$1.72 each)</b></h4>
+              <p>Boba Straw/Straw Cleaner/Bags</p>
+            </div>
+        </div>
+        
+        <div class="cards">
+            <img src="images/coloringbags.png" alt="img" style="width:100%">
+            <div class="containers">
+              <h4><b>Coloring bags 24 ($1.30 each) </b></h4>
+              <p>Coloring bags 24</p>
+            </div>
+        </div>
+
+        <div class="cards">
+            <img src="images/producebags.png" alt="img" style="width:100%">
+            <div class="containers">
+              <h4><b>(produce bags, $1.06 each) </b></h4>
+              <p>Produce Bags</p>
+            </div>
+        </div>
+
+        <h4>300pt (50): $10 giftcard</h4>
+
+        <div class="cards">
+            <img src="images/cutlery.png" alt="img" style="width:100%">
+            <div class="containers">
+              <h4><b>500pt (20): wildflower shakers/pencil kit/cutlery kit</b></h4>
+              <p>Cutlery Kit</p>
+            </div>
+        </div>
+  
+        <div class="cards">
+            <img src="images/pencils.png" alt="img" style="width:100%">
+            <div class="containers">
+              <h4><b>750pt (10): Pencils ($12)</b></h4>
+              <p>Pencils</p>
+            </div>
+        </div>
+      </div>
+   
+      <h4>1000pt (5): $20 gift card</h4>
+      <h4>1250pt (2): ?</h4>
+      <h4>1500pt (1): a gift of your choosing under $500 ex: PS5 (open to anyone in the world)</h4>
+      <!--       <img src="images/undraw_Gaming_re_cma2.png" style="width: 50%; height: 30%;"> -->
+    </div>
   </div>
-    <div class = "section">
-    <h4>Prizes with a ? will be revealed when someone reaches the checkpoint.</h4>
-    <h4>If there are 150 people: </h4>
-    <h4>Signup: sticker + eraser (while stock lasts)</h4>
-    <h4>50pt (120): $5 giftcard</h4>
-    <h4>100pt (90): Enviornment Pack (straw + straw clearner + bag: color/produce)</h4>
-    
-    <!--indent until next pt value -->
-    <p>Straw</p>
-      <p> <a href="https://www.amazon.com/Hiware-Reusable-Starbucks-Replacement-Drinking/dp/B07QH9Q59Z/ref=sr_1_5?crid=35XOVFBVUSMMP&keywords=reusable+plastic+straws&qid=1677996501&s=hpc&sprefix=reusable+plastic+straw%2Chpc%2C144&sr=1-5"> 52 ($0.14 ea) </a></p>
-      <p> <a href="https://www.amazon.com/Hiware-12-Pack-Stainless-Straws-Cleaning/dp/B07D34ZNMH/ref=sr_1_4?crid=1F5W2QJNU5IWT&keywords=metal+straws&qid=1677996739&s=hpc&sprefix=metal+straw%2Chpc%2C147&sr=1-4"> (metal stainless/12/$1.72 each) </a></p>
-      <p>Boba Straw</p>
-      <p>Straw Cleaner</p>
-    <p>Bags</p>
-      <p><a href="https://www.amazon.com/Sandflower-Colouring-Favors-Exchange-Non-Woven/dp/B00MX3FZP2"> Coloring bags 24 ($1.30 each) </a></p>
-      <p> <a href="https://www.amazon.com/YIHONG-Produce-Reusable-Drawstring-Colorful/dp/B07G9T9JLK/ref=sr_1_5?crid=4OMFUCL60WB9&keywords=produce+bags+reusable+washable&qid=1677996415&sprefix=produce+bags%2Caps%2C209&sr=8-5"> (produce bags, $1.06 each) </a></p>
-    <h4>300pt (50): $10 giftcard</h4>
-    <h4>500pt (20): wildflower shakers/pencil kit/cutlery kit</h4>
-    <p><a href="https://a.co/d/dxNHqTP"> Cutlery Kit </a> </p>
-    <h4>750pt (10): Pencils ($12)</h4>
-    <p><a href="https://www.amazon.com/s?me=A3QW17QGJ8R764&marketplaceID=ATVPDKIKX0DER"> Pencils </a></p>
-    <h4>1000pt (5): $20 gift card</h4>
-    <h4>1250pt (2): ?</h4>
-    <h4>1500pt (1): a gift of your choosing under $500 ex: PS5 (open to anyone in the world)</h4>
-    <img src="images/undraw_Gaming_re_cma2.png"style="width: 50%; height: 30%;">
-  </div>
-  </div>
-  </body>
+</body>
+
 </html>
 
 <!--

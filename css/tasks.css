@@ -253,7 +253,9 @@ p{
 
 
 /* PRIZES @page */
-
+.taskinfos h1{
+  padding-top: 4rem;
+}
 
 .taskinfos{
   text-align: center;
@@ -261,6 +263,11 @@ p{
 
 #tabs{
   padding: 10px;
+  padding-bottom: 4rem;
+}
+
+#tabs, .taskinfos{
+  background-color: #DEECF1;
 }
 
 .btabs{
@@ -269,14 +276,13 @@ p{
   padding: 15px;
   border-radius: 30px;
   background-color: #ffffff;
+  cursor: pointer;
 }
 
 .button{
   text-decoration: none;
-  color: #000;
   padding: 5px;
-  border-radius: 15px;
-  background-color: #ffff;
+  background-color: #CCF0FF;
   cursor: pointer;
 }
 
@@ -297,3 +303,8 @@ a{
 .taskinfo{
   text-align: left
 }
+
+
+.linknav{
+    line-height: 100px;
+  }
