@@ -1,4 +1,4 @@
-function create_account(email, password) {
+function create_account(name, email, password) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
@@ -6,6 +6,7 @@ function create_account(email, password) {
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
+        "name": name,
         "email": email,
         "password": password,
     });
@@ -158,9 +159,9 @@ function fill_leaderboard() {
     xhr.onload = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const data = JSON.parse(xhr.responseText)["data"];
-            var lbHtml = "<tr><th>Rank</th><th>Email</th><th>Points</th></tr>";
+            var lbHtml = "<tr><th>Rank</th><th>Name</th><th>Points</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                lbHtml += `<tr><td>${i + 1}</td><td>${data[i]["email"]}</td><td>${data[i]["points"]}</td></tr>`;
+                lbHtml += `<tr><td>${i + 1}</td><td>${data[i]["name"]}</td><td>${data[i]["points"]}</td></tr>`;
             }
             document.getElementById("leaderboardTable").innerHTML = lbHtml;
         }

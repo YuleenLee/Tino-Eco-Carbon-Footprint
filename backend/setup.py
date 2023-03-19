@@ -7,6 +7,7 @@ async def main():
             await cursor.execute("""
             CREATE TABLE "user_info" (
                 "email" TEXT,
+                "name" TEXT,
                 "password" TEXT,
                 "points" INTEGER DEFAULT 0 CHECK(points>=0),
                 "is_officer" BOOLEAN DEFAULT 0 CHECK(is_officer>=0),

@@ -43,7 +43,7 @@
           class="form1">
           <h3>Login </h3>
           <label for="email">Email</label>
-          <input type="email" placeholder="Name" id="loginemail" required>
+          <input type="email" placeholder="Email" id="loginemail" required>
 
           <label for="password">Password</label>
           <input type="password" placeholder="Password" id="loginpassword" required>
@@ -53,13 +53,16 @@
       </div>
       <div class="signupthing">
         <form
-          action="javascript:create_account(document.getElementById('signupemail').value,document.getElementById('signuppassword').value)"
+          action="javascript:create_account(document.getElementById('signupname').value,document.getElementById('signupemail').value,document.getElementById('signuppassword').value)"
           class="form2">
           <h3>Sign up </h3>
-          <label for="email">Email</label>
-          <input type="email" placeholder="Name" id="signupemail" required>
+          <label for="signupname">Full Name</label>
+          <input type="text" placeholder="Name" id="signupname" required>
 
-          <label for="password">Password</label>
+          <label for="signupemail">Email</label>
+          <input type="email" placeholder="Email" id="signupemail" required>
+
+          <label for="signuppassword">Password</label>
           <input type="password" placeholder="Password" id="signuppassword" required>
 
           <button>Sign Up </button>

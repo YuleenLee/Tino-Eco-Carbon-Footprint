@@ -77,6 +77,7 @@ async def create_account():
     data = await request.get_json(force=True)
 
     try:
+        name = data["name"]
         email = data["email"]
         password = data["password"]
     except KeyError:
@@ -94,10 +95,10 @@ async def create_account():
             return {'message': 'A user with that email already exists.'}, 404, HEADERS
 
         await cursor.execute("""
-        INSERT INTO user_info(email, password)
-        VALUES (?, ?)
+        INSERT INTO user_info(email, name, password)
+        VALUES (?, ?, ?)
         """,
-        (email, password))
+        (email, name, password))
         await conn.commit()
 
     return Response(status=201, headers=HEADERS)
@@ -190,12 +191,12 @@ async def leaderboard():
     users = []
     async with conn.cursor() as cursor:
         for row in await (await cursor.execute("""
-        SELECT email, points FROM user_info
+        SELECT name, points FROM user_info
         WHERE points > 0
         ORDER BY points DESC
         """)).fetchall():
             users.append({
-                "email": row[0],
+                "name": row[0],
                 "points": row[1],
             })
 
