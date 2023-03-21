@@ -12,7 +12,7 @@ function requireOfficer() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/is_officer"
+        `${apiURL}is_officer`
     );
     const body = JSON.stringify({
         "email": sessionStorage.getItem("email"),
@@ -39,7 +39,7 @@ function requireLogIn(show=true) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/is_valid_session"
+        `${apiURL}is_valid_session`
     );
     const body = JSON.stringify({
         "email": sessionStorage.getItem("email"),

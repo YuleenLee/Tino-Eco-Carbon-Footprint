@@ -1,8 +1,10 @@
+const apiURL = "http://127.0.0.1:8000/"
+
 function create_account(name, email, password) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/create_account"
+        `${apiURL}create_account`
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -31,7 +33,7 @@ function login(email, password) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/login"
+        `${apiURL}login`
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -61,7 +63,7 @@ function submit_task(task_id, submission) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/is_valid_session"
+        `${apiURL}is_valid_session`
     );
     const body = JSON.stringify({
         "email": sessionStorage.getItem("email"),
@@ -91,7 +93,7 @@ function actuallySubmit(task_id, submission) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/submit_task"
+        `${apiURL}submit_task`
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -121,7 +123,7 @@ function review_task(submission_id, accepted, points) {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/review_task"
+        `${apiURL}review_task`
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     const body = JSON.stringify({
@@ -151,7 +153,7 @@ function fill_leaderboard() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
-        "http://127.0.0.1:5000/leaderboard",
+        `${apiURL}leaderboard`,
     );
     xhr.onerror = function(e){
         window.location.href = "oops.html";
@@ -173,7 +175,7 @@ function fill_task_tables() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/accepted_tasks",
+        `${apiURL}accepted_tasks`,
     );
     const body = JSON.stringify({
         "email": sessionStorage.getItem("email"),
@@ -191,7 +193,7 @@ function fill_task_tables() {
     const xhr2 = new XMLHttpRequest();
     xhr2.open(
         "POST",
-        "http://127.0.0.1:5000/submitted_tasks",
+        `${apiURL}submitted_tasks`,
     );
     xhr2.onload = () => {
         if (xhr2.readyState == 4 && xhr2.status == 200) {
@@ -217,7 +219,7 @@ function setUserPoints() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
-        "http://127.0.0.1:5000/user_points",
+        `${apiURL}user_points`,
     );
     const body = JSON.stringify({
         "email": sessionStorage.getItem("email"),
