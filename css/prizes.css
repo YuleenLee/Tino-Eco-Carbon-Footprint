@@ -95,6 +95,7 @@ p{
 
 }
 
+
 .search-form {
   margin: 15px 0;
   display: flex;
@@ -131,7 +132,6 @@ p{
     padding: 1rem 1rem;
     border-bottom: 0.5px solid black;
 }
-
 
 /*  front page thing */
 
