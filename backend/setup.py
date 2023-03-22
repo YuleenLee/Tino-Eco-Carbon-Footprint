@@ -21,21 +21,12 @@ async def main():
             )
             """)
             await cursor.execute("""
-            CREATE TABLE "submitted_tasks" (
+            CREATE TABLE "tasks" (
                 "submission_id" INTEGER PRIMARY KEY,
                 "task_id" INTEGER,
                 "email" TEXT,
                 "submission" TEXT,
-                FOREIGN KEY("task_id") REFERENCES "task_info"("task_id") ON DELETE CASCADE,
-                FOREIGN KEY("email") REFERENCES "user_info"("email") ON DELETE CASCADE
-            )
-            """)
-            await cursor.execute("""
-            CREATE TABLE "accepted_tasks" (
-                "submission_id" INTEGER,
-                "task_id" INTEGER,
-                "email" TEXT,
-                "submission" TEXT,
+                "accepted" BOOLEAN,
                 FOREIGN KEY("task_id") REFERENCES "task_info"("task_id") ON DELETE CASCADE,
                 FOREIGN KEY("email") REFERENCES "user_info"("email") ON DELETE CASCADE
             )
