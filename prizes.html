@@ -14,14 +14,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet">
 </head>
 <style>
-  
-  .card {
+    .card {
     width: 30%;
     display: flex;
     flex-direction: column;
     background-color: #F6F6F6;
     border-radius: 10px;
-    margin: auto;
+
+    height: 250px;
+  
+    
 
   }
 
@@ -41,7 +43,12 @@
   .section1 {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+  
   }
+ 
 /*
   .cards {
   
@@ -72,7 +79,7 @@
   img {
     border-radius: 5px 5px 0 0;
   }
-*/
+*//*
   .diffsec{
     display: flex;
     flex-wrap: wrap;
@@ -83,13 +90,17 @@
     flex: auto;
     align-items: stretch
   }
+  */
 /*
   .cards{
     padding: 10px;
   }
   */
+  *{
+    text-align: center;
+  }
   h3 {
-    text-align: left;
+    text-align: center;
     padding: 1rem;
     padding-bottom: 2rem;
     margin-top: 1rem;
@@ -100,6 +111,7 @@
     display: flex;
     flex-direction: row;
     padding: 1rem;
+    margin: auto;
   }
 </style>
 
@@ -119,28 +131,24 @@
   <h2 style="color: #23359d">Prizes (more awards, better prizes) may change due to participation and quality of
     work.<br> Prizes that are a mystery will be revealed when someone reaches the checkpoint.</h2>
   <div class="section1">
-    <div class="card">
+    <div class="card" style = "margin-right:80px;">
       <div class="header">
-        <h2>Small Comp Winners: $825 (2 age groups in each)</h2>
+        <h2>Small Comp Winners: $825 </h2>
       </div>
       <div class="container">
-        <h4>2D Art/3D Art</h4>
+        <h2 style = "font-size: 20px;">2D Art/3D Art</h2>
         <!-- this part below indented until poetry -->
-        <p>1st: $150</p>
-        <p>2nd: $75</p>
-        <p>3rd: $50</p>
-        <p>Poetry</p>
+        <p>1st: $150, 2nd: $75, 3rd: $50</p>
+        <h2 style = "font-size: 20px;">Poetry</h2>
         <!--indent -->
-        <p>1st: $150</p>
-        <p>2nd: $75</p>
-        <p>3rd: $50</p>
+        <p>1st: $150, 2nd: $75, 3rd: $50</p>
       </div>
     </div>
-    <div class="card">
+    <div class="card" style = "margin-left:80px;">
       <div class="header">
         <h2>CFC Winners: $550</h2>
       </div>
-      <div class="container">
+      <div class="container" style= "padding-top: 20px">
         <p>1st: $200</p>
         <p>2nd: $150</p>
         <p>3rd: $100</p>
@@ -198,7 +206,7 @@
         </div>
         -->
   <h3>300pt: $10 giftcard</h3>
-  <h3 style="background-color: #DEECF1">500pt: </h3>
+  <h3 style="background-color: #DEECF1">500pt: Mystery</h3>
   <h3>750pt: Pencils</h3>
   <div class="images">
     <img src="images/pencils.png">
@@ -214,8 +222,8 @@
     -->
  <!-- </div> -->
 
-  <h3 style="background-color: #DEECF1">1000pt: </h3>
-  <h3>1250pt: </h3>
+  <h3 style="background-color: #DEECF1">1000pt: Mystery</h3>
+  <h3>1250pt: Mystery</h3>
   <h3 style="background-color: #DEECF1">1500pt: a gift of your choosing under $500 ex: PS5 (open to anyone in the world)</h3>
   <!--       <img src="images/undraw_Gaming_re_cma2.png" style="width: 50%; height: 30%;"> -->
   </div>
