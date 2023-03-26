@@ -10,7 +10,7 @@ HEADERS = {
 app = Flask(__name__)
 
 def is_officer(email):
-    with sqlite3.connect('website.db', detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES) as conn:
+    with sqlite3.connect('backend/website.db', detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES) as conn:
         cursor = conn.cursor()
         user = cursor.execute("""SELECT 1 FROM user_info WHERE is_officer = 1 AND email = ?""", [email])
         user = user.fetchone()
@@ -306,4 +306,5 @@ def review_task():
 
     return Response(status=201, headers=HEADERS)
 
-app.run(port="8000")
+if __name__ == "__main__":
+    app.run("0.0.0.0")
