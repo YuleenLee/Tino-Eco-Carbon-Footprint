@@ -1,2 +1,2 @@
-git+https://github.com/Rapptz/asqlite
-quart
+sqlite3
+flask
