@@ -299,7 +299,7 @@ async def review_task():
 
 async def run():
     global conn
-    async with asqlite.connect('backend/website.db', detect_types=asqlite.PARSE_DECLTYPES | asqlite.PARSE_COLNAMES) as c:
+    async with asqlite.connect('website.db', detect_types=asqlite.PARSE_DECLTYPES | asqlite.PARSE_COLNAMES) as c:
         conn = c
         await app.run_task(port="8000")
 

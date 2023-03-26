@@ -2,7 +2,7 @@ import asyncio
 import asqlite
 
 async def main():
-    async with asqlite.connect('backend/website.db') as conn:
+    async with asqlite.connect('website.db') as conn:
         async with conn.cursor() as cursor:
             await cursor.execute("""
             CREATE TABLE "user_info" (
