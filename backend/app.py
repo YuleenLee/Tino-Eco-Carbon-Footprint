@@ -10,7 +10,7 @@ HEADERS = {
 app = Flask(__name__)
 
 def is_officer(email):
-    with sqlite3.connect('backend/website.db', detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES) as conn:
+    with sqlite3.connect('website.db', detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES) as conn:
         cursor = conn.cursor()
         user = cursor.execute("""SELECT 1 FROM user_info WHERE is_officer = 1 AND email = ?""", [email])
         user = user.fetchone()
