@@ -171,7 +171,40 @@ function fill_leaderboard() {
     xhr.send();
 }
 
-function fill_task_tables() {
+function fill_task_tables(submit=true) {
+    if (!submit) {
+        actuallyFillTasks();
+    }
+    else {
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+            "POST",
+            `${apiURL}is_officer`
+        );
+        const body = JSON.stringify({
+            "email": sessionStorage.getItem("email"),
+        });
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState == this.DONE) {
+                if (xhr.status == 200) {
+                    const data = JSON.parse(xhr.responseText);
+                    if (data["is_officer"]) {
+                        window.location.href = "review.html";
+                    }
+                    else {
+                        actuallyFillTasks();
+                    }
+                }
+            }
+        });
+        xhr.onerror = function(e){
+            window.location.href = "oops.html";
+        };
+        xhr.send(body);
+    }
+}
+
+function actuallyFillTasks() {
     const xhr = new XMLHttpRequest();
     xhr.open(
         "POST",
