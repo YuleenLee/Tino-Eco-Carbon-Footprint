@@ -40,7 +40,7 @@ async def main():
             )
             """)
 
-            one_time = [1, 2, 3, 5, 7, 9, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 26, 29, 31, 32, 34, 39, 43, 44, 45, 46, 47, 50]
+            one_time = [1, 2, 3, 5, 7, 9, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 26, 29, 31, 32, 34, 39, 43, 44, 45, 46, 47, 50, 52]
             multiple_times = [4, 6, 8, 11, 17, 30, 40, 41, 42, 48, 49]
             unlimited_times = [10, 24, 25, 27, 28, 33, 35, 36, 37, 38]
 
@@ -49,6 +49,8 @@ async def main():
             for i in range(1, 51):
                 if i == 30:
                     data.append((i, 3))
+                elif i == 51:
+                    data.append((i, 2))
                 elif i in one_time:
                     data.append((i, 1))
                 elif i in multiple_times:
