@@ -136,7 +136,7 @@ function displayDetails22() {
 
 function displayDetails23() {
   var description = document.getElementById("taskinfo23");
-  taskinfo22.style.display="block";
+  taskinfo23.style.display="block";
 }
 
 function displayDetails24() {
