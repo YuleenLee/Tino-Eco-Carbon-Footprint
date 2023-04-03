@@ -273,3 +273,13 @@ function displayDetails50() {
   var description = document.getElementById("taskinfo50");
   taskinfo50.style.display="block";
 }
+
+function displayDetails51() {
+  var description = document.getElementById("taskinfo51");
+  taskinfo51.style.display="block";
+}
+
+function displayDetails52() {
+  var description = document.getElementById("taskinfo52");
+  taskinfo52.style.display="block";
+}
